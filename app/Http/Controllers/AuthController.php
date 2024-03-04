@@ -55,7 +55,8 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function login(Request $request)
+ 
+   public function login(Request $request)
     {
           
         $credentials = $request->only('email', 'password');
@@ -66,6 +67,22 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Invalid credentials');
         }
     }
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->only('email', 'password');
+
+    //     if ($this->loginService->attempt($credentials)) {
+    //         $user = auth()->user();
+    //         if ($user->role === 'artist') {
+    //             dd('artist');
+    //             // return redirect()->route('artists.create');
+    //         } else {
+    //             return redirect()->intended('/');
+    //         }
+    //     } else {
+    //         return redirect()->back()->with('error', 'Invalid credentials');
+    //     }
+    // }
 
     public function logout()
     {
