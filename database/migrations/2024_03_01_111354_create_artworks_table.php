@@ -19,8 +19,6 @@ class CreateArtworksTable extends Migration
             $table->string('image_url')->nullable(); // Added image URL column
             $table->decimal('price', 10, 2);
             $table->timestamps();
-
-            // Define foreign key constraints
             $table->foreign('artist_id')->references('id')->on('artists');
         });
     }

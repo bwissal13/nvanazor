@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\ArtistRepository;
+use App\Repositories\ArtistRepositoryInterface;
+use App\Repositories\ArtworkRepository;
+use App\Repositories\ArtworkRepositoryInterface;
 use App\Repositories\EloquentUserRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\RoleRepositoryInterface;
@@ -17,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(RoleRepositoryInterface::class, RoleRepository::class);
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
+        $this->app->bind( ArtistRepositoryInterface::class,ArtistRepository::class);
+        $this->app->bind(ArtworkRepositoryInterface::class, ArtworkRepository::class);
     }
     /**
      * Bootstrap any application services.

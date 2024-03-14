@@ -35,6 +35,7 @@ public function createArtistInfo($userId, array $data)
 
     public function createArtist(array $data)
     {
+      
         return $this->artistRepository->create($data);
     }
 

@@ -13,12 +13,12 @@ class ArtistController extends Controller
 
     public function __construct(ArtistService $artistService)
     {
-        $this->middleware('role:artist')->except(['showProfile']);
+        // $this->middleware('role:artist')->except(['showProfile']);
         $this->artistService = $artistService;
     }
     
 
-    public function showProfile($id)
+    public function show($id)
     {
         $artist = $this->artistService->find($id);
 
@@ -40,25 +40,50 @@ class ArtistController extends Controller
 
     public function create()
     {
+   
         return view('artists.create');
     }
     
     public function store(Request $request)
     {
-        $data = $request->validate([
+        
+        $validatedData = $request->validate([
             'bio' => 'nullable|string|max:255',
-            'image_url' => 'nullable|url',
-            'external_url' => 'nullable|url',
+            'image_url' => 'nullable',
+            'external_url' => 'nullable',
         ]);
-    
+   
         // Assuming you have an authenticated user
-        $user = auth()->user();
-    
-        // Save the artist information for the authenticated user
-        $this->artistService->createArtistInfo($user->id, $data);
-    
-        return redirect()->route('artists.showProfile', ['id' => $user->id])->with('status', 'Artist information added successfully');
+        $userId = auth()->id();
+      // Merge user_id with validated data
+        $data = array_merge($validatedData, ['user_id' => $userId]);
+
+        // // Save the artist information for the authenticated user
+        // $this->artistService->createArtistInfo($user->id, $data);
+    // Save the artist information for the authenticated user
+        $this->artistService->createArtistInfo($userId, $data);
+
+        // return redirect()->route('artists.showProfile', ['id' => $user->id])->with('status', 'Artist information added successfully');
+        return redirect()->route('artists.showProfile', ['id' => $userId])->with('status', 'Artist information added successfully');
+
     }
+//     public function store(Request $request)
+// {
+//     $data = $request->validate([
+//         'bio' => 'nullable|string|max:255',
+//         'image_url' => 'nullable|url',
+//         'external_url' => 'nullable|url',
+//     ]);
+
+//     // Assuming you have an authenticated user
+//     $user = auth()->user();
+
+//     // Save the artist information for the authenticated user
+//     $this->artistService->createArtistInfo($user->id, $data);
+
+//     return redirect()->route('home')->with('status', 'Artist information added successfully');
+// }
+
     public function deleteProfile($id)
     {
         $this->artistService->deleteArtist($id);

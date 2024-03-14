@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ArtworkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -68,21 +69,24 @@ Route::middleware('role:user')->group(function () {
 });
 
 
-// Example for the new routes
+
 Route::get('/change-role', [HomeController::class, 'showChangeRoleForm'])->name('show-change-role');
 Route::post('/change-role', [HomeController::class, 'changeRole'])->name('change-role');
 
-Route::middleware(['role:artist'])->group(function () {
-    // Show artist profile
-    Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
+// Route::middleware(['role:artist'])->group(function () {
+//     // Show artist profile
+    // Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
 
-    // Update artist profile
-    Route::put('/artists/{id}', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
+    // // Update artist profile
+    // Route::put('/artists/{id}', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
 
-    // Delete artist profile
-    Route::delete('/artists/{id}', [ArtistController::class, 'deleteProfile'])->name('artists.deleteProfile');
+    // // Delete artist profile
+    // Route::delete('/artists/{id}', [ArtistController::class, 'deleteProfile'])->name('artists.deleteProfile');
 
-    // Create artist profile
-    Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
-    Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
-});
+    // // Create artist profile
+    // Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+    // Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
+// });
+route::resource('artists',ArtistController::class);
+route::resource('artworks',ArtworkController::class);
+//  Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
