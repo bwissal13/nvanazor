@@ -23,11 +23,17 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/user', function () {
+    return view('dashboard.user');
+});
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
 Route::get('/profile', function () {
     return view('dashboard.profile');
+});
+Route::get('/layout', function () {
+    return view('dashboard.layout');
 });
 // Route::get('/signup', function () {
 //     return view('signup');
