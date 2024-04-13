@@ -3,11 +3,10 @@
 <div class="content-body">
     <div class="container">
         <div class="row">
-        
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header flex-row">
-                        <h4 class="card-title">Recent Bid </h4>
+                        <h4 class="card-title">Recent Bid</h4>
                     </div>
                     <div class="card-body bs-0 bg-transparent p-0">
                         <div class="bid-table">
@@ -15,117 +14,25 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <div class="form-check"><input type="checkbox"
-                                                        class="form-check-input" value=""
-                                                        id="flexCheckDefault">
-                                                </div>
-                                            </th>
-                                            <th>Item List</th>
-                                            <th>Open Price</th>
-                                            <th>Your Offer</th>
-                                            <th>Recent Offer</th>
-                                            <th>Time Left</th>
+                                            <th>#</th> <!-- Changed to "#" for numbering -->
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($users as $key => $user)
                                         <tr>
+                                            <td>{{ $key + 1 }}</td> <!-- Start numbering from 1 -->
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->roles->first()->name ?? '' }}</td> <!-- Fetch the first role's name -->
                                             <td>
-                                                <div class="form-check"><input type="checkbox"
-                                                        class="form-check-input" value=""
-                                                        id="flexCheckDefault">
-                                                </div>
+                                                <button class="btn btn-primary">edit</button>
                                             </td>
-                                            <td>
-                                                <div class="d-flex align-items-center"><img
-                                                        src="images/items/15.jpg" alt=""
-                                                        width="60" class="me-3 rounded">
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="mb-0">Cutes Cube Cool</h6>
-                                                        <p class="mb-0">John Abraham</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>0.0025 ETH</td>
-                                            <td> 0.0025 ETH</td>
-                                            <td><img src="images/avatar/1.jpg" alt="" width="40"
-                                                    class="me-2 rounded-circle">0.0025 ETH</td>
-                                            <td>2 Hours 1 min 30s</td>
-                                            <td><span><i class="ri-close-line me-3"></i></span></td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check"><input type="checkbox"
-                                                        class="form-check-input" value=""
-                                                        id="flexCheckDefault">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center"><img
-                                                        src="images/items/16.jpg" alt=""
-                                                        width="60" class="me-3 rounded">
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="mb-0">Cutes Cube Cool</h6>
-                                                        <p class="mb-0">John Abraham</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>0.0025 ETH</td>
-                                            <td> 0.0025 ETH</td>
-                                            <td><img src="images/avatar/2.jpg" alt="" width="40"
-                                                    class="me-2 rounded-circle">0.0025 ETH</td>
-                                            <td>2 Hours 1 min 30s</td>
-                                            <td><span><i class="ri-close-line me-3"></i></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check"><input type="checkbox"
-                                                        class="form-check-input" value=""
-                                                        id="flexCheckDefault">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center"><img
-                                                        src="images/items/17.jpg" alt=""
-                                                        width="60" class="me-3 rounded">
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="mb-0">Cutes Cube Cool</h6>
-                                                        <p class="mb-0">John Abraham</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>0.0025 ETH</td>
-                                            <td> 0.0025 ETH</td>
-                                            <td><img src="images/avatar/3.jpg" alt="" width="40"
-                                                    class="me-2 rounded-circle">0.0025 ETH</td>
-                                            <td>2 Hours 1 min 30s</td>
-                                            <td><span><i class="ri-close-line me-3"></i></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check"><input type="checkbox"
-                                                        class="form-check-input" value=""
-                                                        id="flexCheckDefault">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center"><img
-                                                        src="images/items/18.jpg" alt=""
-                                                        width="60" class="me-3 rounded">
-                                                    <div class="flex-grow-1">
-                                                        <h6 class="mb-0">Cutes Cube Cool</h6>
-                                                        <p class="mb-0">John Abraham</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>0.0025 ETH</td>
-                                            <td> 0.0025 ETH</td>
-                                            <td><img src="images/avatar/4.jpg" alt="" width="40"
-                                                    class="me-2 rounded-circle">0.0025 ETH</td>
-                                            <td>2 Hours 1 min 30s</td>
-                                            <td><span><i class="ri-close-line me-3"></i></span></td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -136,5 +43,4 @@
         </div>
     </div>
 </div>
-
 @endsection

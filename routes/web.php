@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtworkController;
@@ -23,9 +24,15 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/user', function () {
-    return view('dashboard.user');
+Route::get('/front', function () {
+    return view('front.index');
 });
+// Route::get('/user', function () {
+//     return view('dashboard.user');
+// });
+
+Route::resource('/users', UserController::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
@@ -87,17 +94,17 @@ Route::post('/change-role', [HomeController::class, 'changeRole'])->name('change
 
 // Route::middleware(['role:artist'])->group(function () {
 //     // Show artist profile
-    // Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
+    Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
 
     // // Update artist profile
-    // Route::put('/artists/{id}', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
+    Route::put('/artists/{id}', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
 
     // // Delete artist profile
-    // Route::delete('/artists/{id}', [ArtistController::class, 'deleteProfile'])->name('artists.deleteProfile');
+    Route::delete('/artists/{id}', [ArtistController::class, 'deleteProfile'])->name('artists.deleteProfile');
 
     // // Create artist profile
-    // Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
-    // Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
+    Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+    Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
 // });
 route::resource('artists',ArtistController::class);
 route::resource('artworks',ArtworkController::class);
