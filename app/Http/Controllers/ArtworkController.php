@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArtworkRequest;
 use App\Models\Artist;
+use App\Models\Artwork;
 use App\Services\ArtworkService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArtworkController extends Controller
 {
@@ -77,4 +79,15 @@ class ArtworkController extends Controller
         $this->artworkService->delete($id);
         return redirect()->route('artworks.index')->with('success', 'Artwork deleted successfully.');
     }
+    public function showArtworks()
+{
+    $artworks = DB::table('artworks')
+                    ->join('artists', 'artworks.artist_id', '=', 'artists.id')
+                    ->join('users', 'artists.user_id', '=', 'users.id')
+                    ->select('artworks.*', 'users.name as artist_name')
+                    ->get();
+    
+    return view('dashboard.artworks', compact('artworks'));
+}
+
 }
