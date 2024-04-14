@@ -7,6 +7,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\ArtworkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,11 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::resource('categories',CategoryController::class);
+
+Route::get('/dashboard/artist', [ArtistController::class, 'showArtistPage'])->name('dashboard.artist');
+Route::get('/dashboard/artworks', [ArtworkController::class, 'showArtworks'])->name('dashboard.artworks');
 
 Route::get('/', function () {
     return view('welcome');

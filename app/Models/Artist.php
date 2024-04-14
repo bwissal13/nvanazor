@@ -16,4 +16,8 @@ class Artist extends Model
     {
         return $this->belongsToMany(Artwork::class, 'artist_artwork', 'artist_id', 'artwork_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
