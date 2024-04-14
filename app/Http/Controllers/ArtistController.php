@@ -4,6 +4,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateArtistRequest;
+use App\Models\Artist;
+use App\Models\User;
 use App\Services\ArtistService;
 use Illuminate\Http\Request;
 
@@ -90,4 +92,24 @@ class ArtistController extends Controller
 
         return redirect()->route('home')->with('status', 'Artist profile deleted successfully');
     }
+    
+  
+    public function showArtistPage()
+    {
+        // Fetch artist records from the artist table where user_id exists in the users table
+        $artists = Artist::whereExists(function ($query) {
+            $query->select('id')
+                  ->from('users')
+                  ->whereColumn('users.id', 'artists.user_id');
+        })->get();
+    
+        // Fetch the names of users based on their user_id
+        foreach ($artists as $artist) {
+            $user = User::find($artist->user_id);
+            $artist->name = $user ? $user->name : 'Unknown';
+        }
+    
+        return view('dashboard.artist', compact('artists'));
+    }
+    
 }
