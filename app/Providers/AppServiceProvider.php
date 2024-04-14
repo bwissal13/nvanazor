@@ -6,6 +6,8 @@ use App\Repositories\ArtistRepository;
 use App\Repositories\ArtistRepositoryInterface;
 use App\Repositories\ArtworkRepository;
 use App\Repositories\ArtworkRepositoryInterface;
+use App\Repositories\CategoryRepository;
+use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\EloquentUserRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\RoleRepositoryInterface;
@@ -24,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, EloquentUserRepository::class);
         $this->app->bind( ArtistRepositoryInterface::class,ArtistRepository::class);
         $this->app->bind(ArtworkRepositoryInterface::class, ArtworkRepository::class);
+        $this->app->bind(CategoryRepositoryInterface::class,CategoryRepository::class
+        );
     }
     /**
      * Bootstrap any application services.
