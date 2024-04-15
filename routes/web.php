@@ -72,7 +72,7 @@ Route::get('/layout', function () {
 // Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/password/reset-link', [AuthController::class, 'sendPasswordResetLink'])->name('password.reset-link');
 Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
 Route::get('/email/verify', [AuthController::class, 'verifyEmail'])->name('verification.notice');
@@ -123,3 +123,4 @@ route::resource('artworks',ArtworkController::class);
 
 Route::get('/artworks/{id}/modal', [ArtworkController::class, 'showModal'])->name('artworks.modal');
 //  Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
+// Route::get('/artist/profile',[''])
