@@ -443,9 +443,6 @@
                 </div>
             </div>
             <div class="cs-profile_right">
-                <div class="cs-height_30 cs-height_lg_30"></div>
-                <h2 class="cs-section_heading cs-style1">Create</h2>
-                <div class="cs-height_25 cs-height_lg_25"></div>
                  @yield('content') 
               </div>
                    

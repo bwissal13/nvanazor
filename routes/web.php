@@ -45,9 +45,7 @@ Route::resource('/users', UserController::class);
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
-Route::get('/artist-profile', function () {
-    return view('artists.artist-profile');
-});
+
 Route::get('/create-items', function () {
     return view('artworks.create-items');
 });
@@ -57,9 +55,7 @@ Route::get('/profile', function () {
 Route::get('/layout', function () {
     return view('dashboard.layout');
 });
-Route::get('/lfp', function () {
-    return view('layouts.front-profile');
-});
+
 // Route::get('/signup', function () {
 //     return view('signup');
 // });
