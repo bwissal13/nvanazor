@@ -1,49 +1,3 @@
-{{-- 
-
-@extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <h1>Create New Artwork</h1>
-        <form method="POST" action="{{ route('artworks.store') }}" enctype="multipart/form-data">
-            @csrf
-
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{{ old('description') }}</textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="image_url">Image URL</label>
-                <input type="text" class="form-control" id="image_url" name="image_url" value="{{ old('image_url') }}">
-            </div>
-
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{ old('price') }}" required>
-            </div>
-
-            <!-- Add more fields as needed -->
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-@endsection --}}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -470,7 +424,7 @@
     <div class="cs-height_90 cs-height_lg_80"></div>
     <div class="cs-height_100 cs-height_lg_70"></div>
     <div class="container">
-      <div
+      {{-- <div
         class="cs-cover_photo cs-bg"
         data-src="../assets/img/cover-photo.jpg"
       >
@@ -547,8 +501,8 @@
           </svg>
         </button>
       </div>
-      <div class="cs-prifile_wrap">
-        <div class="cs-profile_left">
+      <div class="cs-prifile_wrap"> --}}
+        {{-- <div class="cs-profile_left">
           <div class="cs-profile_sidebar cs-white_bg cs-box_shadow">
             <div class="cs-profile_info">
               <div class="cs-profile_pic">
@@ -722,7 +676,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> --}}
         <div class="cs-profile_right">
           <div class="cs-height_30 cs-height_lg_30"></div>
           <h2 class="cs-section_heading cs-style1">Create</h2>
@@ -885,13 +839,12 @@
                 />
               </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <label for="price" class="cs-form_label" required>Item price</label>
+              <label for="price" class="cs-form_label" id="price" name="price" value="{{ old('price') }}" required>Item price</label>
               <div class="cs-form_field_wrap">
                 <input
                   type="text"
                   class="cs-form_field"
                   placeholder="e. g. 20$"
-                  id="price" name="price" value="{{ old('price') }}"
                 />
               </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
@@ -932,7 +885,7 @@
       </div>
     </div>
     <div class="cs-height_100 cs-height_lg_70"></div>
-    <footer class="cs-footer cs-style1">
+    {{-- <footer class="cs-footer cs-style1">
       <div class="cs-footer_bg"></div>
       <div class="cs-height_100 cs-height_lg_60"></div>
       <div class="container">
@@ -1032,7 +985,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> --}}
     <div class="cs-video_popup">
       <div class="cs-video_popup_overlay"></div>
       <div class="cs-video_popup_content">
@@ -1047,15 +1000,6 @@
         </div>
       </div>
     </div>
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
     <script src="{{ asset('assets/js/plugins/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/isotope.pkg.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.slick.min.js') }}"></script>

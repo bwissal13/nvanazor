@@ -64,4 +64,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Artist::class,'user_id');
     }
+ 
+
 }

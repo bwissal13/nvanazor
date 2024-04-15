@@ -1,54 +1,3 @@
-{{-- 
-@extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <h1>Artist Profile - {{ $artist->name }}</h1>
-        <p>Bio: {{ $artist->bio }}</p>
-        <p>External URL: {{ $artist->external_url }}</p>
-        
-
-        <!-- Button to add artwork -->
-        <a href="{{ route('artworks.create') }}" class="btn btn-primary">Add Artwork</a>
-
-        <!-- Section for displaying artworks associated with the artist -->
-        <h2>Artworks</h2>
-        @if ($artist->artworks)
-            @foreach ($artist->artworks as $artwork)
-                <div>
-                    <h3>{{ $artwork->title }}</h3>
-                    <p>Description: {{ $artwork->description }}</p>
-                    <!-- Add more artwork details as needed -->
-                </div>
-            @endforeach
-        @else
-            <p>No artworks found for this artist.</p>
-        @endif
-    </div>
-@endsection --}}
-{{-- @extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <h2>Add Artist Information</h2>
-        <form method="post" action="{{ route('artists.store') }}">
-            @csrf
-            <div class="form-group">
-                <label for="bio">Bio:</label>
-                <textarea name="bio" id="bio" class="form-control" rows="4">{{ old('bio') }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="image_url">Image URL:</label>
-                <input type="text" name="image_url" id="image_url" class="form-control" value="{{ old('image_url') }}">
-            </div>
-            <div class="form-group">
-                <label for="external_url">External URL:</label>
-                <input type="text" name="external_url" id="external_url" class="form-control" value="{{ old('external_url') }}">
-            </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
-    </div>
-@endsection --}}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -67,7 +16,7 @@
 
 
 <body>
-    {{-- <div class="cs-preloader cs-center">
+    <div class="cs-preloader cs-center">
         <div class="cs-preloader_in"></div>
         <span>Loading</span>
     </div>
@@ -334,7 +283,7 @@
                 </div>
             </div>
         </div>
-    </header> --}}
+    </header>
     <div class="cs-height_90 cs-height_lg_80"></div>
     <div class="cs-height_100 cs-height_lg_70"></div>
     <div class="container">
@@ -500,7 +449,7 @@
                 <div class="cs-height_30 cs-height_lg_30"></div>
                 <h2 class="cs-section_heading cs-style1">Profile Info</h2>
                 <div class="cs-height_25 cs-height_lg_25"></div>
-                {{-- <form class="row">
+                <form class="row">
                     <div class="col-lg-6">
                         <div class="cs-form_field_wrap">
                             <input type="text" class="cs-form_field cs-white_bg"
@@ -537,109 +486,42 @@
                         <div class="cs-form_field_wrap">
                             <input type="text" class="cs-form_field cs-white_bg" placeholder="Custom Url">
                         </div>
-               
+                        <div class="cs-height_25 cs-height_lg_25"></div>
+                        <span class="cs-btn cs-style2 cs-btn_lg w-100">
+                            <span class="text-left">
+                                <i class="fab fa-facebook-f"></i>
+                                <span>Facebook</span>
+                                <input type="text" value="www.facebook.com/username">
+                            </span>
+                        </span>
+                        <div class="cs-height_25 cs-height_lg_25"></div>
+                        <span class="cs-btn cs-style2 cs-btn_lg w-100">
+                            <span class="text-left">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                                <input type="text" value="www.facebook.com/username">
+                            </span>
+                        </span>
+                        <div class="cs-height_25 cs-height_lg_25"></div>
+                        <span class="cs-btn cs-style2 cs-btn_lg w-100">
+                            <span class="text-left">
+                                <i class="fab fa-linkedin-in"></i>
+                                <span>Linkedin</span>
+                                <input type="text" value="www.facebook.com/username">
+                            </span>
+                        </span>
+                        <div class="cs-height_25 cs-height_lg_25"></div>
                     </div>
                     <div class="col-lg-12">
                         <div class="cs-height_40 cs-height_lg_5"></div>
                         <button class="cs-btn cs-style1 cs-btn_lg"><span>Update Profile</span></button>
                     </div>
-                </form> --}}
-                {{-- <form method="post" action="{{ route('artists.store') }}" class="row">
-                    @csrf
-                    <div class="col-lg-6">
-                        <div class="cs-form_field_wrap">
-                            <textarea name="bio" class="cs-form_field cs-white_bg" placeholder="Your bio..." rows="5"></textarea>
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="text" name="image_url" class="cs-form_field cs-white_bg" placeholder="Image URL">
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="text" name="external_url" class="cs-form_field cs-white_bg" placeholder="External URL">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="cs-height_0 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="text" name="username" class="cs-form_field cs-white_bg" placeholder="Username" value="{{ auth()->user()->name }}" readonly>
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="email" name="email" class="cs-form_field cs-white_bg" placeholder="Email" value="{{ auth()->user()->email }}" readonly>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="cs-height_40 cs-height_lg_5"></div>
-                        <button type="submit" class="cs-btn cs-style1 cs-btn_lg"><span>Save</span></button>
-                    </div>
-                </form> --}}
-                {{-- <form method="post" action="{{ route('artists.store') }}" class="row">
-                    @csrf
-                    <div class="col-lg-6">
-                        <div class="cs-form_field_wrap">
-                            <textarea name="bio" class="cs-form_field cs-white_bg" placeholder="Your bio..." rows="5">{{ $artist->bio ?? old('bio') }}</textarea>
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="text" name="image_url" class="cs-form_field cs-white_bg"
-                                placeholder="Image URL" value="{{ $artist->image_url ?? old('image_url') }}">
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="text" name="external_url" class="cs-form_field cs-white_bg"
-                                placeholder="External URL" value="{{ $artist->external_url ?? old('external_url') }}">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="cs-height_0 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="text" name="username" class="cs-form_field cs-white_bg"
-                                placeholder="Username" value="{{ auth()->user()->name }}" readonly>
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <input type="email" name="email" class="cs-form_field cs-white_bg"
-                                placeholder="Email" value="{{ auth()->user()->email }}" readonly>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="cs-height_40 cs-height_lg_5"></div>
-                        <button type="submit" class="cs-btn cs-style1 cs-btn_lg"><span>Save</span></button>
-                    </div>
-                </form> --}}
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="cs-form_field_wrap">
-                            <div class="cs-form_field cs-white_bg"><strong>Bio:</strong>  {{ $artist->bio }}</div>
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <div class="cs-form_field cs-white_bg"><strong>Image URL:</strong> {{ $artist->image_url }}</div>
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <div class="cs-form_field cs-white_bg"><strong>External URL:</strong> {{ $artist->external_url }}</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="cs-height_0 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <div class="cs-form_field cs-white_bg"><strong>Username:</strong> {{ auth()->user()->name }}</div>
-                        </div>
-                        <div class="cs-height_25 cs-height_lg_25"></div>
-                        <div class="cs-form_field_wrap">
-                            <div class="cs-form_field cs-white_bg"><strong>Email:</strong> {{ auth()->user()->email }}</div>
-                        </div>
-                    </div>
-                </div>
-                
-                
+                </form>
             </div>
         </div>
     </div>
     <div class="cs-height_100 cs-height_lg_70"></div>
-    {{-- <footer class="cs-footer cs-style1">
+    <footer class="cs-footer cs-style1">
         <div class="cs-footer_bg"></div>
         <div class="cs-height_100 cs-height_lg_60"></div>
         <div class="container">
@@ -725,8 +607,8 @@
                 </div>
             </div>
         </div>
-    </footer> --}}
-    {{-- <div class="cs-video_popup">
+    </footer>
+    <div class="cs-video_popup">
         <div class="cs-video_popup_overlay"></div>
         <div class="cs-video_popup_content">
             <div class="cs-video_popup_layer"></div>
@@ -739,7 +621,7 @@
                 <div class="cs-video_popup_close"></div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <script src="{{ asset('assets/js/plugins/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/isotope.pkg.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.slick.min.js') }}"></script>

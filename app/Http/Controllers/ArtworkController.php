@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\View;
 use App\Http\Requests\ArtworkRequest;
 use App\Models\Artist;
 use App\Models\Artwork;
 use App\Services\ArtworkService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ArtworkController extends Controller
@@ -18,12 +20,31 @@ class ArtworkController extends Controller
         $this->artworkService = $artworkService;
     }
 
+    // public function showall()
+    // {
+    //     $artworks = $this->artworkService->all();
+    //     return view('artworks.artist-artworks', compact('artworks'));
+    // }
     public function index()
     {
-        $artworks = $this->artworkService->all();
-        return view('artworks.index', compact('artworks'));
+        // Get the authenticated user
+        $user = Auth::user();
+    
+        // Get the artist associated with the authenticated user
+        $artist = $user->artist;
+    
+        // Fetch artworks associated with the artist
+        $artworks = $artist->artworks;
+    
+        return view('artworks.artist-artworks', compact('artworks'));
     }
-
+    public function showModal(Request $request, $id) {
+        $artwork = Artwork::findOrFail($id); // Assuming Artwork is your model
+        
+        // Return a view with the modal content, passing the artwork data
+        return View::make('artworks.modal', ['artwork' => $artwork]);
+    }
+    
     public function create()
     {
         return view('artworks.create');
@@ -52,7 +73,7 @@ class ArtworkController extends Controller
         $artist = Artist::findOrFail($artistId);
         $artist->artworks()->attach($artwork->id);
         // Redirect to the artwork's show page
-        return redirect()->route('artworks.show', $artwork->id)->with('success', 'Artwork created successfully.');
+        return redirect()->route('artworks.index', $artwork->id)->with('success', 'Artwork created successfully.');
     }
 
 
