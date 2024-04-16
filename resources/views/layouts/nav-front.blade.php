@@ -114,18 +114,33 @@
                                         stroke-linejoin="round" />
                                 </svg>
                             </div>
-                            <div class="cs-toggle_box cs-notification_box">
+                           
+                          
+                            @if (Auth::check()) 
+                            <div class="cs-toggle_box cs-profile_box">
+                                <div class="cs-toggle_btn cs-header_icon_btn cs-center">
+                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M15.5 15.75V14.25C15.5 13.4544 15.1839 12.6913 14.6213 12.1287C14.0587 11.5661 13.2956 11.25 12.5 11.25H6.5C5.70435 11.25 4.94129 11.5661 4.37868 12.1287C3.81607 12.6913 3.5 13.4544 3.5 14.25V15.75"
+                                            stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M9.5 8.25C11.1569 8.25 12.5 6.90685 12.5 5.25C12.5 3.59315 11.1569 2.25 9.5 2.25C7.84315 2.25 6.5 3.59315 6.5 5.25C6.5 6.90685 7.84315 8.25 9.5 8.25Z"
+                                            stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            {{-- <div class="cs-toggle_box cs-notification_box">
                                 <div class="cs-toggle_btn cs-header_icon_btn cs-center">
                                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M14 6.63916C14 5.44569 13.5259 4.30109 12.682 3.45718C11.8381 2.61327 10.6935 2.13916 9.5 2.13916C8.30653 2.13916 7.16193 2.61327 6.31802 3.45718C5.47411 4.30109 5 5.44569 5 6.63916C5 11.8892 2.75 13.3892 2.75 13.3892H16.25C16.25 13.3892 14 11.8892 14 6.63916Z"
-                                            stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" />
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                         <path
                                             d="M10.7981 16.3887C10.6663 16.616 10.477 16.8047 10.2493 16.9358C10.0216 17.067 9.76341 17.136 9.50063 17.136C9.23784 17.136 8.97967 17.067 8.75196 16.9358C8.52424 16.8047 8.33498 16.616 8.20312 16.3887"
-                                            stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" />
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                     <span class="cs-btn_badge">8</span>
                                 </div>
@@ -201,22 +216,33 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="cs-toggle_box cs-profile_box">
-                                <div class="cs-toggle_btn cs-header_icon_btn cs-center">
-                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M15.5 15.75V14.25C15.5 13.4544 15.1839 12.6913 14.6213 12.1287C14.0587 11.5661 13.2956 11.25 12.5 11.25H6.5C5.70435 11.25 4.94129 11.5661 4.37868 12.1287C3.81607 12.6913 3.5 13.4544 3.5 14.25V15.75"
-                                            stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path
-                                            d="M9.5 8.25C11.1569 8.25 12.5 6.90685 12.5 5.25C12.5 3.59315 11.1569 2.25 9.5 2.25C7.84315 2.25 6.5 3.59315 6.5 5.25C6.5 6.90685 7.84315 8.25 9.5 8.25Z"
-                                            stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                </div>
+                            </div> --}}
                                 <div class="cs-toggle_body">
+                                    <div class="cs-user_info">
+                                        <h3 class="cs-user_name"> Hello {{ Auth::user()->name }}</h3>
+                                       
+                                    </div>
+                                    <ul>
+                                        <li><a href="user-profile.html">My Profile</a></li>
+                                        <li><a href="user-items.html">My Item</a></li>
+                                        <li><a href="user-wallet.html">My Wallet</a></li>
+                                        <li><a href="user-account-settings.html">Settings</a></li>
+                                        <li>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="mode_switch">
+                                                <label class="form-check-label" for="mode_switch">Night Mode</label>
+                                            </div>
+                                        </li>
+                                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                                    </ul>
+                                </div>
+                            @else
+                                <!-- Display register or sign up -->
+                                <a href="{{ route('register') }}" class="cs-btn cs-style1"><span>Register</span></a>
+                                <a href="{{ route('login') }}" class="cs-btn cs-style1"><span>Login</span></a>
+                            @endif
+
+                            {{-- <div class="cs-toggle_body">
                                     <div class="cs-user_info">
                                         <h3 class="cs-user_name">Thomas G. Smith</h3>
                                         <h4 class="cs-user_balance">13.45 ETH</h4>
@@ -252,13 +278,13 @@
                                         <a href="create-items.html"
                                             class="cs-btn cs-style1"><span>Create</span></a>
                                     </div>
-                                </div>
-                            </div>
-                            <a href="connect-wallet.html" class="cs-btn cs-style1"><span>Connect Wallet</span></a>
+                                </div> --}}
                         </div>
+                        {{-- <a href="connect-wallet.html" class="cs-btn cs-style1"><span>Connect Wallet</span></a> --}}
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </header>
