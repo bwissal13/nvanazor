@@ -3,9 +3,10 @@
         <div class="container-fluid">
             <div class="cs-main_header_in">
                 <div class="cs-main_header_left">
-                    <a class="cs-site_branding" href="index.html"><img
-                            src="https://thememarch.com/demo/html/enfhess-html/enfhess-dark/assets/img/logo.svg"
-                            alt="Logo"></a>
+                    <a class="cs-site_branding" href="index.html"><img src="images/anazor.svg"
+                        style="    margin: 0px 0px 0px 14px;padding: 3px;height: 25px;"
+                        alt="Logo">
+                </a>
                 </div>
                 <div class="cs-main_header_right">
                     <div class="cs-search_wrap">
