@@ -16,7 +16,7 @@
                         </div>
                     @endif
 
-                    @if(auth()->user()->hasRole('admin'))
+                    @if (auth()->user()->hasRole('admin'))
                         <p>Hi Admin!</p>
                     @else
                         <p>Hi User!</p>
@@ -45,7 +45,7 @@
                         </div>
                     @endif
 
-                    @if(auth()->user()->hasRole('admin'))
+                    @if (auth()->user()->hasRole('admin'))
                         <p>Hi Admin!</p>
                     @else
                         <p>Hi User!</p>
@@ -59,30 +59,28 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-<!-- Mirrored from thememarch.com/demo/html/enfhess-html/enfhess-dark/light-mode/index_3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Mar 2024 10:21:15 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="ThemeMarch">
-        <title>NFT Home Three</title>
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/fontawesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="ThemeMarch">
+    <title>ANAZOR</title>
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/plugins/fontawesome.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+</head>
 
 <body>
     <div class="cs-preloader cs-center">
         <div class="cs-preloader_in"></div>
         <span>Loading</span>
     </div>
-   @include('layouts.nav-front')
+    @include('layouts.nav-front')
     <div class="cs-height_90 cs-height_lg_80"></div>
-    <section class="cs-hero cs-style2 cs-bg cs-center" data-src="../assets/img/hero_bg2.jpg">
+    <section class="cs-hero cs-style2 cs-bg cs-center" data-src="">
         <div class="container-fluid">
             <div class="cs-hero_in">
                 <div class="cs-hero_text">
@@ -104,16 +102,25 @@
             <h2 class="cs-section_heading cs-style1 text-center">Browse By Catagory</h2>
             <div class="cs-height_45 cs-height_lg_45"></div>
             <div class="row">
-                <div class="col-lg-2 col-sm-4 col-6">
-                    <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
-                        <div class="cs-card_thumb">
-                            <img src="../assets/img/category/category_1.jpg" alt="Image">
-                        </div>
-                        <p class="cs-card_title">Art</p>
-                    </a>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
-                <div class="col-lg-2 col-sm-4 col-6">
+                @foreach ($categories as $category)
+                    <div class="col-lg-2 col-sm-4 col-6">
+                        <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
+                            <div class="cs-card_thumb">
+                                {{-- <img src="../assets/img/category/category_1.jpg" alt="Image"> --}}
+                                @if ($category->image)
+                                    <img src="{{ asset('storage/category_images/' . $category->image) }}"
+                                        alt="{{ $category->name }}" style="height: 108px;">
+                                @else
+                                    <img src="{{ asset('noimage.png') }}" alt="no image" style="height: 108px;">
+                                @endif
+                            </div>
+                            <p class="cs-card_title">{{ $category->name }}</p>
+                        </a>
+                        <div class="cs-height_30 cs-height_lg_30"></div>
+                    </div>
+                @endforeach
+
+                {{-- <div class="col-lg-2 col-sm-4 col-6">
                     <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
                         <div class="cs-card_thumb">
                             <img src="../assets/img/category/category_2.jpg" alt="Image">
@@ -157,12 +164,12 @@
                         <p class="cs-card_title">Collectibles</p>
                     </a>
                     <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
     <div class="cs-height_70 cs-height_lg_40"></div>
-    <section>
+    {{-- <section>
         <div class="container">
             <div class="cs-section_heading cs-style2">
                 <div class="cs-section_left">
@@ -353,403 +360,14 @@
                 </div>
             </div>
         </div>
-    </section>
-    <div class="cs-height_100 cs-height_lg_70"></div>
-    <section>
-        <div class="container">
-            <div class="cs-section_heading cs-style2">
-                <div class="cs-section_left">
-                    <h2 class="cs-section_title">Live Auction</h2>
-                </div>
-                <div class="cs-section_right">
-                    <a href="explore-details.html" class="cs-btn cs-style1"><span>Explore More</span></a>
-                </div>
-            </div>
-            <div class="cs-height_45 cs-height_lg_45"></div>
-            <div class="cs-slider cs-style1 cs-gap-20">
-                <div class="cs-slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
-                    data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="3"
-                    data-lg-slides="5" data-add-slides="5">
-                    <div class="cs-slider_wrapper">
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style4 cs-type1 cs-box_shadow cs-white_bg">
-                                <span class="cs-card_like cs-primary_color">
-                                    <i class="fas fa-heart fa-fw"></i>
-                                    2.3k
-                                </span>
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_14.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <div class="cs-card_info">
-                                    <a href="#" class="cs-avatar cs-white_bg">
-                                        <div class="cs-avatar_images">
-                                            <img src="../assets/img/avatar/avatar_14.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_15.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_16.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_17.png" alt="Avatar">
-                                        </div>
-                                        <span>07+ <span>Place Bid</span></span>
-                                    </a>
-                                    <div class="cs-height_10 cs-height_lg_10"></div>
-                                    <div class="cs-countdown" data-countdate="24 August 2022">
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_days"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Days</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_hours"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Hours</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_minutes"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Min</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_seconds"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Sec</h3>
-                                        </div>
-                                    </div>
-                                    <h3 class="cs-card_title"><a href="#">Polar bear with penguin</a></h3>
-                                    <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.06 ETH
-                                            11/109</b></div>
-                                    <hr>
-                                    <div class="cs-card_footer">
-                                        <span class="cs-card_btn_1" data-modal="#history_1">
-                                            <i class="fas fa-redo fa-fw"></i>
-                                            View History
-                                        </span>
-                                        <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style4 cs-type1 cs-box_shadow cs-white_bg">
-                                <span class="cs-card_like cs-primary_color">
-                                    <i class="fas fa-heart fa-fw"></i>
-                                    2.3k
-                                </span>
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_15.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <div class="cs-card_info">
-                                    <a href="#" class="cs-avatar cs-white_bg">
-                                        <div class="cs-avatar_images">
-                                            <img src="../assets/img/avatar/avatar_15.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_14.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_17.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_16.png" alt="Avatar">
-                                        </div>
-                                        <span>12+ <span>Place Bid</span></span>
-                                    </a>
-                                    <div class="cs-height_10 cs-height_lg_10"></div>
-                                    <div class="cs-countdown" data-countdate="15 August 2022">
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_days"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Days</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_hours"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Hours</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_minutes"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Min</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_seconds"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Sec</h3>
-                                        </div>
-                                    </div>
-                                    <h3 class="cs-card_title"><a href="#">Koala couple</a></h3>
-                                    <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.05 ETH
-                                            15/42</b></div>
-                                    <hr>
-                                    <div class="cs-card_footer">
-                                        <span class="cs-card_btn_1" data-modal="#history_1">
-                                            <i class="fas fa-redo fa-fw"></i>
-                                            View History
-                                        </span>
-                                        <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style4 cs-type1 cs-box_shadow cs-white_bg">
-                                <span class="cs-card_like cs-primary_color">
-                                    <i class="fas fa-heart fa-fw"></i>
-                                    1.3k
-                                </span>
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_19.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <div class="cs-card_info">
-                                    <a href="#" class="cs-avatar cs-white_bg">
-                                        <div class="cs-avatar_images">
-                                            <img src="../assets/img/avatar/avatar_14.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_15.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_16.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_17.png" alt="Avatar">
-                                        </div>
-                                        <span>10+ <span>Place Bid</span></span>
-                                    </a>
-                                    <div class="cs-height_10 cs-height_lg_10"></div>
-                                    <div class="cs-countdown" data-countdate="25 August 2022">
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_days"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Days</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_hours"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Hours</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_minutes"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Min</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_seconds"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Sec</h3>
-                                        </div>
-                                    </div>
-                                    <h3 class="cs-card_title"><a href="#">City of toronto</a></h3>
-                                    <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.06 ETH
-                                            11/109</b></div>
-                                    <hr>
-                                    <div class="cs-card_footer">
-                                        <span class="cs-card_btn_1" data-modal="#history_1">
-                                            <i class="fas fa-redo fa-fw"></i>
-                                            View History
-                                        </span>
-                                        <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style4 cs-type1 cs-box_shadow cs-white_bg">
-                                <span class="cs-card_like cs-primary_color">
-                                    <i class="fas fa-heart fa-fw"></i>
-                                    3.3k
-                                </span>
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_20.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <div class="cs-card_info">
-                                    <a href="#" class="cs-avatar cs-white_bg">
-                                        <div class="cs-avatar_images">
-                                            <img src="../assets/img/avatar/avatar_15.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_14.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_17.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_16.png" alt="Avatar">
-                                        </div>
-                                        <span>20+ <span>Place Bid</span></span>
-                                    </a>
-                                    <div class="cs-height_10 cs-height_lg_10"></div>
-                                    <div class="cs-countdown" data-countdate="30 August 2022">
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_days"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Days</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_hours"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Hours</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_minutes"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Min</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_seconds"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Sec</h3>
-                                        </div>
-                                    </div>
-                                    <h3 class="cs-card_title"><a href="#">Cool artwork</a></h3>
-                                    <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.05 ETH
-                                            15/42</b></div>
-                                    <hr>
-                                    <div class="cs-card_footer">
-                                        <span class="cs-card_btn_1" data-modal="#history_1">
-                                            <i class="fas fa-redo fa-fw"></i>
-                                            View History
-                                        </span>
-                                        <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style4 cs-type1 cs-box_shadow cs-white_bg">
-                                <span class="cs-card_like cs-primary_color">
-                                    <i class="fas fa-heart fa-fw"></i>
-                                    6.3k
-                                </span>
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_21.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <div class="cs-card_info">
-                                    <a href="#" class="cs-avatar cs-white_bg">
-                                        <div class="cs-avatar_images">
-                                            <img src="../assets/img/avatar/avatar_14.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_15.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_16.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_17.png" alt="Avatar">
-                                        </div>
-                                        <span>07+ <span>Place Bid</span></span>
-                                    </a>
-                                    <div class="cs-height_10 cs-height_lg_10"></div>
-                                    <div class="cs-countdown" data-countdate="21 August 2022">
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_days"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Days</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_hours"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Hours</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_minutes"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Min</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_seconds"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Sec</h3>
-                                        </div>
-                                    </div>
-                                    <h3 class="cs-card_title"><a href="#">Beautiful stylish model</a></h3>
-                                    <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.06 ETH
-                                            11/109</b></div>
-                                    <hr>
-                                    <div class="cs-card_footer">
-                                        <span class="cs-card_btn_1" data-modal="#history_1">
-                                            <i class="fas fa-redo fa-fw"></i>
-                                            View History
-                                        </span>
-                                        <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style4 cs-type1 cs-box_shadow cs-white_bg">
-                                <span class="cs-card_like cs-primary_color">
-                                    <i class="fas fa-heart fa-fw"></i>
-                                    2.3k
-                                </span>
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_14.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <div class="cs-card_info">
-                                    <a href="#" class="cs-avatar cs-white_bg">
-                                        <div class="cs-avatar_images">
-                                            <img src="../assets/img/avatar/avatar_14.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_15.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_16.png" alt="Avatar">
-                                            <img src="../assets/img/avatar/avatar_17.png" alt="Avatar">
-                                        </div>
-                                        <span>07+ <span>Place Bid</span></span>
-                                    </a>
-                                    <div class="cs-height_10 cs-height_lg_10"></div>
-                                    <div class="cs-countdown" data-countdate="24 August 2022">
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_days"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Days</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_hours"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Hours</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_minutes"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Min</h3>
-                                        </div>
-                                        <div class="cs-countdown_item">
-                                            <div class="cs-countdown_number">
-                                                <div class="cs-count_seconds"></div>
-                                            </div>
-                                            <h3 class="cs-countdown_text">Sec</h3>
-                                        </div>
-                                    </div>
-                                    <h3 class="cs-card_title"><a href="#">Polar bear with penguin</a></h3>
-                                    <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.06 ETH
-                                            11/109</b></div>
-                                    <hr>
-                                    <div class="cs-card_footer">
-                                        <span class="cs-card_btn_1" data-modal="#history_1">
-                                            <i class="fas fa-redo fa-fw"></i>
-                                            View History
-                                        </span>
-                                        <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-height_10 cs-height_lg_10"></div>
-                <div class="cs-pagination cs-style1"></div>
-            </div>
-        </div>
-    </section>
+    </section> --}}
+    
     <div class="cs-height_95 cs-height_lg_70"></div>
     <section>
         <div class="container">
             <div class="cs-section_heading cs-style2">
                 <div class="cs-section_left">
-                    <h2 class="cs-section_title">Top Seller in 1 Week</h2>
+                    <h2 class="cs-section_title"> Artists </h2>
                 </div>
             </div>
             <div class="cs-height_45 cs-height_lg_45"></div>
@@ -758,7 +376,8 @@
                     data-slides-per-view="responsive" data-xs-slides="2" data-sm-slides="3" data-md-slides="4"
                     data-lg-slides="5" data-add-slides="5">
                     <div class="cs-slider_wrapper">
-                        <div class="cs-slide">
+                        @foreach ( $artists as $artist )
+                          <div class="cs-slide">
                             <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
                                 <a href="#" class="cs-card_thumb cs-zoom_effect">
                                     <img src="../assets/img/general/general_1.jpg" alt="Image"
@@ -767,72 +386,15 @@
                                 <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_1.png"
                                         alt="Avatar"></a>
                                 <div class="cs-card_info">
-                                    <h3 class="cs-card_title"><a href="#">Georgia Ewing</a></h3>
+                                    <h3 class="cs-card_title"><a href="{{ route('profile', ['id' => $artist->id]) }}">{{$artist->user->name}}</a></h3>
                                     <div class="cs-card_subtitle">@hsdfgsdfghdfg</div>
-                                    <a href="#" class="cs-card_btn">Follow</a>
+                                    <a href="{{ route('profile', ['id' => $artist->id]) }}" class="cs-card_btn">visite profile</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_2.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_2.png"
-                                        alt="Avatar"></a>
-                                <div class="cs-card_info">
-                                    <h3 class="cs-card_title"><a href="#">Freeman Ross</a></h3>
-                                    <div class="cs-card_subtitle">@greemanross</div>
-                                    <a href="#" class="cs-card_btn">Follow</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_3.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_3.png"
-                                        alt="Avatar"></a>
-                                <div class="cs-card_info">
-                                    <h3 class="cs-card_title"><a href="#">Claudia Mcloy</a></h3>
-                                    <div class="cs-card_subtitle">@claudiamacloy</div>
-                                    <a href="#" class="cs-card_btn">Follow</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_4.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_4.png"
-                                        alt="Avatar"></a>
-                                <div class="cs-card_info">
-                                    <h3 class="cs-card_title"><a href="#">Joseph Geiger</a></h3>
-                                    <div class="cs-card_subtitle">@josephgeiger</div>
-                                    <a href="#" class="cs-card_btn">Follow</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cs-slide">
-                            <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_5.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_5.png"
-                                        alt="Avatar"></a>
-                                <div class="cs-card_info">
-                                    <h3 class="cs-card_title"><a href="#">Kurtis Whaley</a></h3>
-                                    <div class="cs-card_subtitle">@kurtiswhaley</div>
-                                    <a href="#" class="cs-card_btn">Follow</a>
-                                </div>
-                            </div>
-                        </div>
+                        </div>  
+                        @endforeach
+                        
+                        
                         <div class="cs-slide">
                             <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
                                 <a href="#" class="cs-card_thumb cs-zoom_effect">
@@ -868,297 +430,50 @@
             </div>
             <div class="cs-isotop_filter cs-style1 cs-type1 cs-center">
                 <ul class="cs-mp0 cs-center">
-                    <li class="active"><a href="#" data-filter="*"><span>All NFT</span></a></li>
-                    <li><a href="#" data-filter=".fashion"><span>Fashion</span></a></li>
-                    <li><a href="#" data-filter=".music"><span>Music</span></a></li>
-                    <li><a href="#" data-filter=".video"><span>Video</span></a></li>
-                    <li><a href="#" data-filter=".games"><span>Games</span></a></li>
+                    <li class="active"><a href="#" data-filter="*"><span>All Artworks</span></a></li>
+                    @foreach ($categories as $category)
+                        <li><a href="#" data-filter=".category-{{ $category->id }}"><span>{{ $category->name }}</span></a></li>
+                    @endforeach
                 </ul>
             </div>
+            
+            
             <div class="cs-height_45 cs-height_lg_45"></div>
+            
             <div class="cs-isotop cs-style1 cs-isotop_col_5 cs-has_gutter_30">
                 <div class="cs-grid_sizer"></div>
-                <div class="cs-isotop_item fashion">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            2.1K
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/1.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                <span>Johny E.</span>
+                @foreach ($artworks as $artwork)
+                    <div class="cs-isotop_item category-{{ $artwork->category_id }}">
+                        <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
+                            <span class="cs-card_like cs-primary_color">
+                                <i class="fas fa-heart fa-fw"></i>
+                                {{-- {{ $artwork->likes }} --}}2.2
+                            </span>
+                            <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
+                                <img src="../assets/img/explore/1.jpg" alt="Image" class="cs-zoom_item">
+                                {{-- <img src="{{ $artwork->image }}" alt="Image" class="cs-zoom_item"> --}}
                             </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Art work #2134</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.29 ETH 7/21</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
+                            <div class="cs-card_info">
+                                <a href="#" class="cs-avatar cs-white_bg">
+                                    {{-- <img src="{{ $artwork->artist_avatar }}" alt="Avatar"> --}}
+                                    <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
+                                    <span>{{ $artwork->artist_name }}</span>
+                                </a>
+                                <h3 class="cs-card_title"><a href="explore-details.html">{{ $artwork->title }}</a></h3>
+                                <div class="cs-card_price">Price: <b class="cs-primary_color">${{ $artwork->price }}</b></div>
+                            </div> <form action="{{ route('cart.add') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="artwork_id" value="{{ $artwork->id }}">
+                        <button type="submit">Add to Cart</button>
+                    </form>
                         </div>
                     </div>
-                </div>
-                <div class="cs-isotop_item music">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            3.3K
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/2.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_13.png" alt="Avatar">
-                                <span>debit alex</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Cool octopus traveling</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.24 ETH 4/17</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item fashion">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            3.1K
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/3.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                <span>robert Alex</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Octopus eating icecrem</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.09 ETH 1/9</b></div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item video">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            2.1K
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/4.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                <span>johny e.</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Panda with fish</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.19 ETH 5/11</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item games">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            1.2K
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/5.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_13.png" alt="Avatar">
-                                <span>austin R.</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Kawaii-bubble-tea</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.29 ETH 11/19</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item fashion">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            1.1k
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/6.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                <span>robert</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Cute monsters hallo</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.19 ETH 7/13</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item music">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            2.2k
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/7.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_13.png" alt="Avatar">
-                                <span>debit alex</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Cat-mascot-character</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.28 ETH 21/91</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item games">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            1.4k
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/8.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                <span>debit alex</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Small kid with orange</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.17 ETH 14/23</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item music">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            1.9k
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/9.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_13.png" alt="Avatar">
-                                <span>austin r.</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Digital Cat Illustration</a>
-                            </h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.09 ETH 10/91</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-isotop_item games">
-                    <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
-                        <span class="cs-card_like cs-primary_color">
-                            <i class="fas fa-heart fa-fw"></i>
-                            9.3k
-                        </span>
-                        <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                            <img src="../assets/img/explore/10.jpg" alt="Image" class="cs-zoom_item">
-                        </a>
-                        <div class="cs-card_info">
-                            <a href="#" class="cs-avatar cs-white_bg">
-                                <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                <span>gallant j.</span>
-                            </a>
-                            <h3 class="cs-card_title"><a href="explore-details.html">Fictional character</a></h3>
-                            <div class="cs-card_price">Current Bid: <b class="cs-primary_color">0.06 ETH 11/109</b>
-                            </div>
-                            <hr>
-                            <div class="cs-card_footer">
-                                <span class="cs-card_btn_1" data-modal="#history_1">
-                                    <i class="fas fa-redo fa-fw"></i>
-                                    View History
-                                </span>
-                                <span class="cs-card_btn_2" data-modal="#bid_1"><span>Place Bid</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                   
+                    
+                @endforeach
             </div>
+            
+            
         </div>
     </section>
     <div class="cs-height_95 cs-height_lg_70"></div>
@@ -1719,8 +1034,14 @@
     <script src="{{ asset('assets/js/plugins/isotope.pkg.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.slick.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script>// Example filtering logic using category IDs
+        $('.cs-isotop_filter a').on('click', function(e) {
+            e.preventDefault();
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({ filter: filterValue });
+        });
+        </script>
 </body>
 
-<!-- Mirrored from thememarch.com/demo/html/enfhess-html/enfhess-dark/light-mode/index_3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 14 Mar 2024 10:21:17 GMT -->
 
 </html>

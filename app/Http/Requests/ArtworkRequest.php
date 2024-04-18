@@ -29,6 +29,7 @@ class ArtworkRequest extends FormRequest
             'description' => 'nullable|string',
             'image_url' => 'nullable',
             'price' => 'required|numeric|min:0',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

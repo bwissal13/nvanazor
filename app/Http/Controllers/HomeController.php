@@ -5,18 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Repositories\UserRepositoryInterface;
 use App\Repositories\RoleRepositoryInterface;
+use App\Services\ArtistService;
+use App\Services\ArtworkService;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     protected $userRepository;
     protected $roleRepository;
+    protected $categoryService;
+    protected $artworkService;
+    protected $artistService;
 
-    public function __construct(UserRepositoryInterface $userRepository, RoleRepositoryInterface $roleRepository)
+    public function __construct(UserRepositoryInterface $userRepository, RoleRepositoryInterface $roleRepository,CategoryService $categoryService,ArtworkService $artworkService,ArtistService $artistService)
     {
         $this->middleware('auth');
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
+        $this->categoryService = $categoryService;
+        $this->artworkService = $artworkService;
+        $this->artistService = $artistService;
     }
 
     // public function index()
@@ -33,20 +42,21 @@ class HomeController extends Controller
         $user = auth()->user();
         $roles = $this->userRepository->getUserRoles($user);
         $isAdmin = $this->userRepository->hasRole($user, 'admin');
-        
+        $categories = $this->categoryService->getAllCategories();
         // Check if the user has the 'artist' role
         $isArtist = $this->userRepository->hasRole($user, 'artist');
-    
+        $artworks = $this->artworkService->all();
         if ($isAdmin) {
             $greeting = 'Hi Admin';
         } elseif ($isArtist) {
             // Redirect to the artist creation form
-            return redirect()->route('artists.create');
+            $greeting = 'Hi artist';
+            // return redirect()->route('artists.create');
         } else {
             $greeting = 'Hi User';
         }
-    
-        return view('home', ['greeting' => $greeting, 'roles' => $roles]);
+    $artists=$this->artistService->all();
+        return view('home', ['greeting' => $greeting, 'roles' => $roles,'categories'=>$categories,'artworks'=>$artworks,'artists'=>$artists]);
     }
     
     public function showChangeRoleForm()

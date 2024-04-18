@@ -18,6 +18,15 @@ class ArtistService
     {
         return $this->artistRepository->find($id);
     }
+    public function findWithArtworks($id){
+        return $this->artistRepository->findWithArtworks($id);
+    }
+    
+    public function all()
+    {
+        return $this->artistRepository->all();
+    }
+
     // App\Services\ArtistService.php
 
 public function createArtistInfo($userId, array $data)

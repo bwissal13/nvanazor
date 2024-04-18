@@ -6,11 +6,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="ThemeMarch">
-    <title>NFT Home Three</title>
+    <title>ANAZOR</title>
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+   
 </head>
 <body>
     <div class="cs-preloader cs-center">

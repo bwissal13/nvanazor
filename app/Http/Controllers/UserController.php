@@ -20,5 +20,9 @@ class UserController extends Controller
         $users = $this->userService->getAllUsers();
         return view('dashboard.user', compact('users'));
     }
-
+    public function update(Request $request,$id){
+        $data = $request->validate([]);
+        $user = $this->userService->update($id,$data);
+        return redirect()->route('artists.show', $id)->with('status', 'Profile updated successfully');
+    }
 }

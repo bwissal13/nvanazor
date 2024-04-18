@@ -14,7 +14,7 @@
                                     2.1K
                                 </span>
                                 <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/explore/1.jpg" alt="Image" class="cs-zoom_item">
+                                    <img src="{{ asset('storage/artwork_images/' . $artwork->image_url ) }}" alt="{{ $artwork->title }}" ">
                                 </a>
                                 <div class="cs-card_info">
                                     <a href="#" class="cs-avatar cs-white_bg">

@@ -17,5 +17,10 @@ class UserRepository
         return User::findOrFail($id);
     }
 
-    // Other methods for updating, deleting, etc., can be added here
+    public function update($id, array $data)
+    {
+        $user = User::findOrFail($id);
+        $user->update($data);
+        return $user;
+    }
 }

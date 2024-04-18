@@ -27,8 +27,8 @@ class UpdateArtistRequest extends FormRequest
     {
         return [
             'bio' => 'nullable|string|max:255', 
-            'image_url' => 'nullable|url',
-            'external_url' => 'nullable|url',
+            'image_url' => 'nullable',
+            'external_url' => 'nullable',
             
         ];
     }

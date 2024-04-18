@@ -12,7 +12,13 @@ class ArtistRepository implements ArtistRepositoryInterface
     {
         return Artist::find($id);
     }
-
+    public function findWithArtworks($id){
+        return Artist::with('artworks')->find($id);
+    }
+    public function all()
+    {
+        return Artist::all();
+    }
     public function create(array $data)
     {
         return Artist::create($data);

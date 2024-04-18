@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\StripeController;
+use App\Models\Order;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -39,7 +44,9 @@ Route::get('/front', function () {
 // Route::get('/user', function () {
 //     return view('dashboard.user');
 // });
-
+// Route::get('/shopping', function () {
+//     return view('front.ShoppingCart');
+// });
 Route::resource('/users', UserController::class);
 
 Route::get('/dashboard', function () {
@@ -122,5 +129,28 @@ route::resource('artists',ArtistController::class);
 route::resource('artworks',ArtworkController::class);
 
 Route::get('/artworks/{id}/modal', [ArtworkController::class, 'showModal'])->name('artworks.modal');
-//  Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
-// Route::get('/artist/profile',[''])
+Route::get('/artists/{id}/profile', [ArtistController::class, 'showProfile'])->name('profile');
+Route::put('/artists/{id}/update-profile', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
+
+
+Route::post('/cart/add', [ShoppingCartController::class, 'addItem'])->name('cart.add');
+
+Route::get('/shoppingcart', [ShoppingCartController::class, 'viewCart'])->name('front.ShoppingCart');
+// routes/web.php
+
+Route::delete('/remove-item/{id}', [ShoppingCartController::class, 'removeItem'])->name('item.remove');
+
+
+// Route to display the order creation form
+Route::get('/order/create', [OrderController::class, 'showCreateForm'])->name('create-order');
+
+// Route to handle order creation
+Route::post('/order/create', [OrderController::class, 'createOrder'])->name('order.create');
+
+// Route to update order status
+Route::put('/order/{id}/update-status', [OrderController::class, 'updateOrderStatus'])->name('order.update_status');
+
+
+Route::post('/session', [StripeController::class , 'session'])->name('session.store');
+
+Route::get('/success',[ StripeController::class , 'success'])->name('success');

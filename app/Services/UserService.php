@@ -23,5 +23,7 @@ class UserService
         return $this->userRepository->findById($id);
     }
 
-    // Other methods for updating, deleting, etc., can be added here
+  public function update($id,array $data){
+    return $this->userRepository->update($id,$data);
+  }
 }

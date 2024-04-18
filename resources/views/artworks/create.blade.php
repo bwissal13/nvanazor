@@ -43,7 +43,7 @@
                     </defs>
                 </svg>
             </div>
-            <input type="file" class="cs-file" accept="image/*" />
+            <input type="file" class="cs-file" name="image" accept="image/*" />
             <img src="https://thememarch.com/" class="cs-preview" alt="Image" />
         </div>
         <div class="cs-height_25 cs-height_lg_25"></div>
@@ -71,12 +71,13 @@
                 />
               </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
-              <label class="cs-form_label">Select collection</label>
+              <label class="cs-form_label">Select category</label>
               <div class="cs-form_field_wrap cs-select_arrow">
-                <select class="cs-form_field">
-                  <option value="1">e. g. NFT music</option>
-                  <option value="2">e. g. NFT art</option>
-                  <option value="3">e. g. NFT video</option>
+                <select class="cs-form_field" name="category_id">
+                  @foreach ($categories as $category )
+                  <option value="{{$category->id}}">{{$category->name}}</option>
+                  @endforeach
+
                 </select>
               </div>
               <div class="cs-height_20 cs-height_lg_20"></div>
@@ -107,6 +108,16 @@
         </div>
       </div>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <div class="cs-height_100 cs-height_lg_70"></div>
 
 @endsection

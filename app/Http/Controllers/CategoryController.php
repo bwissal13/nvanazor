@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\CategoryRequest;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -30,7 +29,19 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $data = $request->validated();
-        $this->categoryService->createCategory($data);
+        
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imageName = 'category_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $imagePath = $request->file('image')->move(public_path("storage/category_images"),$imageName);
+            // $imagePath->move(public_path("storage/category_images"),$imageName);
+            $data['image'] = $imagePath->getFilename();
+            // dd($imagePath->getFilename());
+            $this->categoryService->createCategory($data);
+        }
+      
+
+        
         return redirect()->route('categories.index')->with('status', 'Category created successfully');
     }
 
@@ -43,6 +54,14 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $data = $request->validated();
+        
+        // Handle image update
+        if ($request->hasFile('image')) {
+            $imageName = 'category_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $imagePath = $request->file('image')->storeAs('category_images', $imageName, 'public');
+            $data['image'] = $imagePath;
+        }
+        
         $this->categoryService->updateCategory($id, $data);
         return redirect()->route('categories.index')->with('status', 'Category updated successfully');
     }
