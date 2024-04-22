@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\UserController;
@@ -8,6 +9,10 @@ use App\Http\Controllers\ArtworkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ForumCommentController;
+use App\Http\Controllers\ForumController;
+use App\Http\Controllers\ForumPostController;
+use App\Http\Controllers\ForumTopicController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShoppingCartController;
@@ -15,6 +20,9 @@ use App\Http\Controllers\StripeController;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// use App\Http\Controllers\ForumTopicController;
+// use App\Http\Controllers\ForumPostController;
+// use App\Http\Controllers\ForumCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +35,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::resource('categories',CategoryController::class);
+// Routes for forum posts
+Route::get('/forum/add-post', [ForumPostController::class, 'create'])->name('forum.post.create');
+Route::post('/forum/add-post', [ForumPostController::class, 'store'])->name('forum.post.store');
+
+Route::resource('categories', CategoryController::class);
 
 Route::get('/dashboard/artist', [ArtistController::class, 'showArtistPage'])->name('dashboard.artist');
 Route::get('/dashboard/artworks', [ArtworkController::class, 'showArtworks'])->name('dashboard.artworks');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 // Route::get('/artist-artworks', function () {
 //     return view('artworks.artist-artworks');
 // });
@@ -52,6 +64,7 @@ Route::resource('/users', UserController::class);
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
+Route::get('forum', [ForumController::class, 'show'])->name('forum.show');
 
 Route::get('/create-items', function () {
     return view('artworks.create-items');
@@ -62,6 +75,10 @@ Route::get('/profile', function () {
 Route::get('/layout', function () {
     return view('dashboard.layout');
 });
+Route::get('/fdrr', function () {
+    return view('forum.post_details');
+});
+Route::get('/search', [ForumController::class,'search']);
 
 // Route::get('/signup', function () {
 //     return view('signup');
@@ -95,7 +112,7 @@ Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name(
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // routes/web.php
 
 Route::middleware('role:admin')->group(function () {
@@ -113,20 +130,20 @@ Route::post('/change-role', [HomeController::class, 'changeRole'])->name('change
 
 // Route::middleware(['role:artist'])->group(function () {
 //     // Show artist profile
-    // Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
+// Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
 
-    // // // Update artist profile
-    // Route::put('/artists/{id}', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
+// // // Update artist profile
+// Route::put('/artists/{id}', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
 
-    // // // Delete artist profile
-    // Route::delete('/artists/{id}', [ArtistController::class, 'deleteProfile'])->name('artists.deleteProfile');
+// // // Delete artist profile
+// Route::delete('/artists/{id}', [ArtistController::class, 'deleteProfile'])->name('artists.deleteProfile');
 
-    // // // Create artist profile
-    // Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
-    Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
+// // // Create artist profile
+// Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
 // });
-route::resource('artists',ArtistController::class);
-route::resource('artworks',ArtworkController::class);
+route::resource('artists', ArtistController::class);
+route::resource('artworks', ArtworkController::class);
 
 Route::get('/artworks/{id}/modal', [ArtworkController::class, 'showModal'])->name('artworks.modal');
 Route::get('/artists/{id}/profile', [ArtistController::class, 'showProfile'])->name('profile');
@@ -151,6 +168,31 @@ Route::post('/order/create', [OrderController::class, 'createOrder'])->name('ord
 Route::put('/order/{id}/update-status', [OrderController::class, 'updateOrderStatus'])->name('order.update_status');
 
 
-Route::post('/session', [StripeController::class , 'session'])->name('session.store');
+Route::post('/session', [StripeController::class, 'session'])->name('session.store');
 
-Route::get('/success',[ StripeController::class , 'success'])->name('success');
+Route::get('/success', [StripeController::class, 'success'])->name('success');
+
+
+// // Routes for forum topics
+// Route::get('/forum/topic/{topicId}', [ForumTopicController::class, 'show'])->name('forum.topic.show');
+// Route::get('/forum/add-topic', [ForumTopicController::class, 'create'])->name('forum.topic.create');
+// Route::post('/forum/add-topic', [ForumTopicController::class, 'store'])->name('forum.topic.store');
+
+
+// // Routes for forum comments
+// Route::get('/forum/add-comment/{postId}', [ForumCommentController::class, 'create'])->name('forum.comment.create');
+// Route::post('/forum/add-comment', [ForumCommentController::class, 'store'])->name('forum.comment.store');
+
+// Route to show a specific topic
+Route::get('/forum/topic/{topicId}', [ForumTopicController::class, 'show'])->name('forum.topic.show');
+
+// Route to show the form for adding a new topic
+Route::get('/forum/add-topic', [ForumTopicController::class, 'create'])->name('forum.topic.create');
+
+// Route to store a new topic
+Route::post('/forum/add-topic', [ForumTopicController::class, 'store'])->name('forum.topic.store');
+
+
+Route::get('/forum/post/{postId}/comment', [ForumCommentController::class, 'create'])->name('forum.comment.create');
+Route::post('/forum/post/comment', [ForumCommentController::class, 'store'])->name('forum.comment.store');
+Route::post('/forum/post/{postId}/comment', [ForumCommentController::class, 'store'])->name('forum.post.comment');

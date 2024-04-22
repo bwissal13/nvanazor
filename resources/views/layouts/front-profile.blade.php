@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="ThemeMarch">
     <title>ANAZOR</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/fontawesome.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -22,7 +22,8 @@
     <div class="cs-height_90 cs-height_lg_80"></div>
     <div class="cs-height_100 cs-height_lg_70"></div>
     <div class="container">
-        <div class="cs-cover_photo cs-bg" data-src="../assets/img/cover-photo.jpg">
+        <div class="cs-cover_photo cs-bg"data-src="{{ asset('assets/img/cover-photo.jpg') }}"
+        >
             <button class="cs-edit_cover cs-center">
                 <svg width="33" height="33" viewBox="0 0 33 33" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -69,17 +70,14 @@
                     <div class="cs-profile_info">
                         <div class="cs-profile_pic"><img src="../assets/img/avatar/avatar_29.png" alt="">
                         </div>
-                        <h3 class="cs-profile_title">Edward Figaro</h3>
-                        <div class="cs-name">@omuk tomux</div>
-                        <ul class="cs-profile_meta cs-mp0">
-                            <li>Followers (560)</li>
-                            <li>Following (56)</li>
-                        </ul>
+                        <h3 class="cs-profile_title">{{ Auth::user()->name }}</h3>
+                        <div class="cs-name">{{ Auth::user()->email }}</div>
+                     
                     </div>
                     <div class="cs-height_30 cs-height_lg_30"></div>
                     <ul class="cs-profile_nav cs-mp0">
                         <li>
-                            {{-- <a href="{{route('profile.show')}}"> --}}
+                            <a href="/artists/ {{ Auth::user()->artist->id }}">
                                 <svg width="19" height="15" viewBox="0 0 19 15" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <mask id="path-1-inside-1_1353_5399" fill="white">
@@ -94,7 +92,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="user-account-settings.html">
+                            <a href="http://127.0.0.1:8000/artists/{{ Auth::user()->artist->id }}/edit">
                                 <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_1353_5407)">
@@ -118,11 +116,11 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <span>Account Settings</span>
+                                <span>Edit Profile</span>
                             </a>
                         </li>
                         <li>
-                            <a href="user-items.html" class="active">
+                            <a href="http://127.0.0.1:8000/artworks" class=">
                                 <svg width="20" height="14" viewBox="0 0 20 14" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -133,7 +131,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="create-items.html">
+                            <a href="http://127.0.0.1:8000/artworks/create">
                                 <svg width="15" height="14" viewBox="0 0 15 14" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -143,7 +141,7 @@
                                 <span>Create</span>
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="user-activity.html">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +151,7 @@
                                 </svg>
                                 <span>My Activity</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="user-wallet.html">
                                 <svg width="19" height="18" viewBox="0 0 19 18" fill="none"

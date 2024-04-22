@@ -5,10 +5,12 @@
         <div class="cs-height_100 cs-height_lg_70"></div>
         <div class="container">
             <div class="cs-collection_card">
-                <div class="cs-collection_img"><img src="../assets/img/general/collection_details.jpg"
+                <div class="cs-collection_img"><img src={{ asset('assets/img/general/collection_details.jpg') }}
+
                         alt="Collection Details"></div>
                 <div class="cs-collection_bottom">
-                    <div class="cs-collection_avatar"><img src="../assets/img/avatar/avatar_20.png" alt="Avatar">
+                    <div class="cs-collection_avatar"><img src={{ asset('assets/img/avatar/avatar_20.png') }}
+                        alt="Avatar">
                     </div>
                     <div class="cs-collection_info">
                         <div class="cs-collection_info_in cs-white_bg">
@@ -213,11 +215,12 @@
                                 2.1K
                             </span>
                             <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                <img src="../assets/img/explore/1.jpg" alt="Image" class="cs-zoom_item">
+                                <img src={{ asset('assets/img/explore/1.jpg') }}
+                                alt="Image" class="cs-zoom_item">
                             </a>
                             <div class="cs-card_info">
                                 <a href="#" class="cs-avatar cs-white_bg">
-                                    <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
+                                    <img src={{ asset('assets/img/avatar/avatar_12.png')}} alt="Avatar">
                                     <span>{{$artist->name}}</span>
                                 </a>
                                 <h3 class="cs-card_title"><a href="#">{{$artwork->title}}</a></h3>

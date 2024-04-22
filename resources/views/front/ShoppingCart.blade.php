@@ -87,13 +87,12 @@
                     <div class="card ezy__epcart4-card sticky-card" id="stickyCard">
                         <div class="card-body p-md-4">
                             <h6 class="mb-4 opacity-75">Order Summary</h6>
-                            @foreach ($cartItems as $item)
                             <form id="checkoutForm" action="{{ route('session.store') }}" method="POST">
-
-                              @csrf <!-- Add CSRF token for Laravel forms -->
-                              <!-- Include hidden fields for order data -->
+                              @csrf 
+                            @foreach ($cartItems as $item)
+                            
                               <input type="hidden" name="user_id" value="{{ $user_id }}">
-                              <input type="hidden" name="artwork_id" value="{{ $artworkId }}">
+                              <input type="hidden" name="artwork_ids[]" value="{{ $item->artwork->id }}">
                               <input type="hidden" name="amount" value="{{ $totalPrice }}">
                               
                               <input type="hidden" name="stripeToken" id="stripeToken">

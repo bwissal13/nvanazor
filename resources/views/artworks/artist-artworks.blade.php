@@ -14,12 +14,13 @@
                                     2.1K
                                 </span>
                                 <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="{{ asset('storage/artwork_images/' . $artwork->image_url ) }}" alt="{{ $artwork->title }}" ">
+                                    <img src="{{ asset('storage/artwork_images/' . $artwork->image_url ) }}" alt="{{ $artwork->title }}" >
                                 </a>
                                 <div class="cs-card_info">
                                     <a href="#" class="cs-avatar cs-white_bg">
-                                        <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                        <span> {{ $artwork->title }}</span>
+                                        <img src={{ asset('assets/img/avatar/avatar_12.png') }}
+                                        alt="Avatar">
+                                        <span> {{ $artwork->artist->user->name }}</span>
                                     </a>
                                     <h3 class="cs-card_title"><a href="explore-details.html"></a>{{ $artwork->title }}
                                     </h3>

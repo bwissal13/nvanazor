@@ -25,17 +25,18 @@
                 <div class="cs-height_40 cs-height_lg_5"></div>
                 <button type="submit" class="cs-btn cs-style1 cs-btn_lg"><span>Update</span></button>
             </form>
+            <div class="cs-height_25 cs-height_lg_25"></div>
             <form method="post" action="{{ route('users.update', ['user' => $user_id]) }}">
                 @csrf
                 @method('PUT')
                 <div class="col-lg-6">
                     <div class="cs-height_0 cs-height_lg_25"></div>
                     <div class="cs-form_field_wrap">
-                        <input type="text" name="username" class="cs-form_field cs-white_bg" placeholder="Username" value="{{ auth()->user()->name }}" readonly>
+                        <input type="text" name="name" class="cs-form_field cs-white_bg" placeholder="Username" value="{{ auth()->user()->name }}" >
                     </div>
                     <div class="cs-height_25 cs-height_lg_25"></div>
                     <div class="cs-form_field_wrap">
-                        <input type="email" name="email" class="cs-form_field cs-white_bg" placeholder="Email" value="{{ auth()->user()->email }}" readonly>
+                        <input type="email" name="email" class="cs-form_field cs-white_bg" placeholder="Email" value="{{ auth()->user()->email }}" >
                     </div>
                 </div>
                 <div class="cs-height_40 cs-height_lg_5"></div>

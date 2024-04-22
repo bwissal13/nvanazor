@@ -1,61 +1,3 @@
-{{-- 
-
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    @if (auth()->user()->hasRole('admin'))
-                        <p>Hi Admin!</p>
-                    @else
-                        <p>Hi User!</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
-{{-- 
-
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    @if (auth()->user()->hasRole('admin'))
-                        <p>Hi Admin!</p>
-                    @else
-                        <p>Hi User!</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -80,22 +22,25 @@
     </div>
     @include('layouts.nav-front')
     <div class="cs-height_90 cs-height_lg_80"></div>
-    <section class="cs-hero cs-style2 cs-bg cs-center" data-src="">
+    <section class="cs-hero cs-style2 cs-bg cs-center" data-src="../assets/img/bcamazigh.png">
         <div class="container-fluid">
             <div class="cs-hero_in">
                 <div class="cs-hero_text">
-                    <h1 class="cs-hero_title">The Best Beneficial Place to Collect , Buy and Sell NFT Marketplace</h1>
-                    <div class="cs-hero_subtitle cs-medium">Secure and secret NFTs for gaming, entertainment, metaverse
-                        and data <br>management time capsules.</div>
+                    <h1 class="cs-hero_title">Anazor: Votre Destination Artistique Ultime</h1>
+                    <div class="cs-hero_subtitle cs-medium">Explorez, découvrez et partagez des œuvres artistiques de
+                        manière intuitive et engageante</div>
                     <div class="cs-hero_btns">
-                        <a href="explore-1.html" class="cs-hero_btn cs-style1 cs-color3"><span>Explore</span></a>
-                        <a href="create-items.html" class="cs-hero_btn cs-style1 cs-color1"><span>Create</span></a>
+                        <a href="marketplace.html" class="cs-hero_btn cs-style1 cs-color3"><span>Marketplace des
+                                Œuvres</span></a>
+                        <a href="forum.html" class="cs-hero_btn cs-style1 cs-color1"><span>Forum d'Échange et de
+                                Critique</span></a>
                     </div>
                 </div>
                 <div class="cs-hero_img"><img src="../assets/img/hero_img1.png" alt=""></div>
             </div>
         </div>
     </section>
+
     <div class="cs-height_95 cs-height_lg_70"></div>
     <section>
         <div class="container">
@@ -120,248 +65,11 @@
                     </div>
                 @endforeach
 
-                {{-- <div class="col-lg-2 col-sm-4 col-6">
-                    <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
-                        <div class="cs-card_thumb">
-                            <img src="../assets/img/category/category_2.jpg" alt="Image">
-                        </div>
-                        <p class="cs-card_title">Music</p>
-                    </a>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
-                <div class="col-lg-2 col-sm-4 col-6">
-                    <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
-                        <div class="cs-card_thumb">
-                            <img src="../assets/img/category/category_3.jpg" alt="Image">
-                        </div>
-                        <p class="cs-card_title">Video</p>
-                    </a>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
-                <div class="col-lg-2 col-sm-4 col-6">
-                    <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
-                        <div class="cs-card_thumb">
-                            <img src="../assets/img/category/category_4.jpg" alt="Image">
-                        </div>
-                        <p class="cs-card_title">Fashion</p>
-                    </a>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
-                <div class="col-lg-2 col-sm-4 col-6">
-                    <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
-                        <div class="cs-card_thumb">
-                            <img src="../assets/img/category/category_5.jpg" alt="Image">
-                        </div>
-                        <p class="cs-card_title">Sports</p>
-                    </a>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
-                <div class="col-lg-2 col-sm-4 col-6">
-                    <a href="#" class="cs-card cs-style1 cs-box_shadow text-center cs-white_bg">
-                        <div class="cs-card_thumb">
-                            <img src="../assets/img/category/category_6.jpg" alt="Image">
-                        </div>
-                        <p class="cs-card_title">Collectibles</p>
-                    </a>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div> --}}
             </div>
         </div>
     </section>
     <div class="cs-height_70 cs-height_lg_40"></div>
-    {{-- <section>
-        <div class="container">
-            <div class="cs-section_heading cs-style2">
-                <div class="cs-section_left">
-                    <h2 class="cs-section_title">Top Collection</h2>
-                </div>
-                <div class="cs-section_right">
-                    <a href="explore-details.html" class="cs-btn cs-style1"><span>Explore More</span></a>
-                </div>
-            </div>
-            <div class="cs-height_45 cs-height_lg_45"></div>
-            <div class="cs-grid_5 cs-gap_30">
-                <div class="cs-card cs-style3 cs-box_shadow cs-white_bg">
-                    <a href="#" class="cs-card_thumb cs-zoom_effect">
-                        <img src="../assets/img/general/general_7.jpg" alt="Image" class="cs-zoom_item">
-                    </a>
-                    <a href="#" class="cs-avatar">
-                        <img src="../assets/img/avatar/avatar_7.png" alt="Avatar">
-                        <span class="cs-avatar_status"></span>
-                    </a>
-                    <div class="cs-card_info">
-                        <h3 class="cs-card_title"><a href="collection-details.html">Audioglyphs</a></h3>
-                        <div class="cs-card_subtitle">
-                            <i class="far fa-check-circle fa-fw"></i>
-                            <span>Guarranted Authentic</span>
-                        </div>
-                        <div class="cs-catd_meta">
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="fas fa-list-ul fa-fw"></i>
-                                <span>120 Items</span>
-                            </a>
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="far fa-eye fa-fw"></i>
-                                <span>1K Views</span>
-                            </a>
-                        </div>
-                        <div class="cs-catd_footer">
-                            <div class="cs-left">
-                                <h4>Volume</h4>
-                                <p>22.9k</p>
-                            </div>
-                            <div class="cs-left">
-                                <h4>Floor Price</h4>
-                                <p>4.2 ETH</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-card cs-style3 cs-box_shadow cs-white_bg">
-                    <a href="#" class="cs-card_thumb cs-zoom_effect">
-                        <img src="../assets/img/general/general_8.jpg" alt="Image" class="cs-zoom_item">
-                    </a>
-                    <a href="#" class="cs-avatar">
-                        <img src="../assets/img/avatar/avatar_8.png" alt="Avatar">
-                    </a>
-                    <div class="cs-card_info">
-                        <h3 class="cs-card_title"><a href="collection-details.html">Audioglyphs</a></h3>
-                        <div class="cs-card_subtitle">
-                            <i class="far fa-check-circle fa-fw"></i>
-                            <span>Guarranted Authentic</span>
-                        </div>
-                        <div class="cs-catd_meta">
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="fas fa-list-ul fa-fw"></i>
-                                <span>234 Items</span>
-                            </a>
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="far fa-eye fa-fw"></i>
-                                <span>2.1K Views</span>
-                            </a>
-                        </div>
-                        <div class="cs-catd_footer">
-                            <div class="cs-left">
-                                <h4>Volume</h4>
-                                <p>87.9k</p>
-                            </div>
-                            <div class="cs-left">
-                                <h4>Floor Price</h4>
-                                <p>6.7 ETH</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-card cs-style3 cs-box_shadow cs-white_bg">
-                    <a href="#" class="cs-card_thumb cs-zoom_effect">
-                        <img src="../assets/img/general/general_9.jpg" alt="Image" class="cs-zoom_item">
-                    </a>
-                    <a href="#" class="cs-avatar">
-                        <img src="../assets/img/avatar/avatar_9.png" alt="Avatar">
-                        <span class="cs-avatar_status"></span>
-                    </a>
-                    <div class="cs-card_info">
-                        <h3 class="cs-card_title"><a href="collection-details.html">Audioglyphs</a></h3>
-                        <div class="cs-card_subtitle">
-                            <i class="far fa-check-circle fa-fw"></i>
-                            <span>Guarranted Authentic</span>
-                        </div>
-                        <div class="cs-catd_meta">
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="fas fa-list-ul fa-fw"></i>
-                                <span>560 Items</span>
-                            </a>
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="far fa-eye fa-fw"></i>
-                                <span>3.1K Views</span>
-                            </a>
-                        </div>
-                        <div class="cs-catd_footer">
-                            <div class="cs-left">
-                                <h4>Volume</h4>
-                                <p>99.9k</p>
-                            </div>
-                            <div class="cs-left">
-                                <h4>Floor Price</h4>
-                                <p>4.8 ETH</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-card cs-style3 cs-box_shadow cs-white_bg">
-                    <a href="#" class="cs-card_thumb cs-zoom_effect">
-                        <img src="../assets/img/general/general_10.jpg" alt="Image" class="cs-zoom_item">
-                    </a>
-                    <a href="#" class="cs-avatar">
-                        <img src="../assets/img/avatar/avatar_10.png" alt="Avatar">
-                    </a>
-                    <div class="cs-card_info">
-                        <h3 class="cs-card_title"><a href="collection-details.html">Audioglyphs</a></h3>
-                        <div class="cs-card_subtitle">
-                            <i class="far fa-check-circle fa-fw"></i>
-                            <span>Guarranted Authentic</span>
-                        </div>
-                        <div class="cs-catd_meta">
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="fas fa-list-ul fa-fw"></i>
-                                <span>345 Items</span>
-                            </a>
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="far fa-eye fa-fw"></i>
-                                <span>2.1K Views</span>
-                            </a>
-                        </div>
-                        <div class="cs-catd_footer">
-                            <div class="cs-left">
-                                <h4>Volume</h4>
-                                <p>19.8k</p>
-                            </div>
-                            <div class="cs-left">
-                                <h4>Floor Price</h4>
-                                <p>3.5 ETH</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cs-card cs-style3 cs-box_shadow cs-white_bg">
-                    <a href="#" class="cs-card_thumb cs-zoom_effect">
-                        <img src="../assets/img/general/general_11.jpg" alt="Image" class="cs-zoom_item">
-                    </a>
-                    <a href="#" class="cs-avatar">
-                        <img src="../assets/img/avatar/avatar_11.png" alt="Avatar">
-                    </a>
-                    <div class="cs-card_info">
-                        <h3 class="cs-card_title"><a href="collection-details.html">Audioglyphs</a></h3>
-                        <div class="cs-card_subtitle">
-                            <i class="far fa-check-circle fa-fw"></i>
-                            <span>Guarranted Authentic</span>
-                        </div>
-                        <div class="cs-catd_meta">
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="fas fa-list-ul fa-fw"></i>
-                                <span>140 Items</span>
-                            </a>
-                            <a href="#" class="cs-catd_meta_item">
-                                <i class="far fa-eye fa-fw"></i>
-                                <span>2.1K Views</span>
-                            </a>
-                        </div>
-                        <div class="cs-catd_footer">
-                            <div class="cs-left">
-                                <h4>Volume</h4>
-                                <p>12.9k</p>
-                            </div>
-                            <div class="cs-left">
-                                <h4>Floor Price</h4>
-                                <p>2.8 ETH</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    
+
     <div class="cs-height_95 cs-height_lg_70"></div>
     <section>
         <div class="container">
@@ -376,30 +84,32 @@
                     data-slides-per-view="responsive" data-xs-slides="2" data-sm-slides="3" data-md-slides="4"
                     data-lg-slides="5" data-add-slides="5">
                     <div class="cs-slider_wrapper">
-                        @foreach ( $artists as $artist )
-                          <div class="cs-slide">
-                            <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
-                                <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_1.jpg" alt="Image"
-                                        class="cs-zoom_item">
-                                </a>
-                                <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_1.png"
-                                        alt="Avatar"></a>
-                                <div class="cs-card_info">
-                                    <h3 class="cs-card_title"><a href="{{ route('profile', ['id' => $artist->id]) }}">{{$artist->user->name}}</a></h3>
-                                    <div class="cs-card_subtitle">@hsdfgsdfghdfg</div>
-                                    <a href="{{ route('profile', ['id' => $artist->id]) }}" class="cs-card_btn">visite profile</a>
+                        @foreach ($artists as $artist)
+                            <div class="cs-slide">
+                                <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
+                                    <a href="#" class="cs-card_thumb cs-zoom_effect">
+                                        <img src="../assets/img/general/general_1.jpg" alt="Image"
+                                            class="cs-zoom_item">
+                                    </a>
+                                    <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_1.png"
+                                            alt="Avatar"></a>
+                                    <div class="cs-card_info">
+                                        <h3 class="cs-card_title"><a
+                                                href="{{ route('profile', ['id' => $artist->id]) }}">{{ $artist->user->name }}</a>
+                                        </h3>
+                                        <div class="cs-card_subtitle">{{ $artist->user->email }}</div>
+                                        <a href="{{ route('profile', ['id' => $artist->id]) }}"
+                                            class="cs-card_btn">visite profile</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>  
                         @endforeach
-                        
-                        
+
+
                         <div class="cs-slide">
                             <div class="cs-card cs-style2 cs-box_shadow cs-white_bg">
                                 <a href="#" class="cs-card_thumb cs-zoom_effect">
-                                    <img src="../assets/img/general/general_6.jpg" alt="Image"
-                                        class="cs-zoom_item">
+                                    <img src="../assets/img/general/general_6.jpg" alt="Image" class="cs-zoom_item">
                                 </a>
                                 <a href="#" class="cs-avatar"><img src="../assets/img/avatar/avatar_6.png"
                                         alt="Avatar"></a>
@@ -432,14 +142,16 @@
                 <ul class="cs-mp0 cs-center">
                     <li class="active"><a href="#" data-filter="*"><span>All Artworks</span></a></li>
                     @foreach ($categories as $category)
-                        <li><a href="#" data-filter=".category-{{ $category->id }}"><span>{{ $category->name }}</span></a></li>
+                        <li><a href="#"
+                                data-filter=".category-{{ $category->id }}"><span>{{ $category->name }}</span></a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
-            
-            
+
+
             <div class="cs-height_45 cs-height_lg_45"></div>
-            
+
             <div class="cs-isotop cs-style1 cs-isotop_col_5 cs-has_gutter_30">
                 <div class="cs-grid_sizer"></div>
                 @foreach ($artworks as $artwork)
@@ -450,30 +162,30 @@
                                 {{-- {{ $artwork->likes }} --}}2.2
                             </span>
                             <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                                <img src="../assets/img/explore/1.jpg" alt="Image" class="cs-zoom_item">
-                                {{-- <img src="{{ $artwork->image }}" alt="Image" class="cs-zoom_item"> --}}
+                                <img src="{{ asset('storage/artwork_images/' . $artwork->image_url ) }}" alt="{{ $artwork->title }}" >
                             </a>
                             <div class="cs-card_info">
                                 <a href="#" class="cs-avatar cs-white_bg">
                                     {{-- <img src="{{ $artwork->artist_avatar }}" alt="Avatar"> --}}
                                     <img src="../assets/img/avatar/avatar_12.png" alt="Avatar">
-                                    <span>{{ $artwork->artist_name }}</span>
+                                    <span>{{ $artwork->artist->user->name }}</span>
                                 </a>
-                                <h3 class="cs-card_title"><a href="explore-details.html">{{ $artwork->title }}</a></h3>
-                                <div class="cs-card_price">Price: <b class="cs-primary_color">${{ $artwork->price }}</b></div>
-                            </div> <form action="{{ route('cart.add') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="artwork_id" value="{{ $artwork->id }}">
-                        <button type="submit">Add to Cart</button>
-                    </form>
+                                <h3 class="cs-card_title"><a href="explore-details.html">{{ $artwork->title }}</a>
+                                </h3>
+                                <div class="cs-card_price">Price: <b
+                                        class="cs-primary_color">${{ $artwork->price }}</b></div>
+                            </div>
+                            <form action="{{ route('cart.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="artwork_id" value="{{ $artwork->id }}">
+                                <button type="submit" class="cs-card_btn_2 ">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
-                   
-                    
                 @endforeach
             </div>
-            
-            
+
+
         </div>
     </section>
     <div class="cs-height_95 cs-height_lg_70"></div>
@@ -500,8 +212,8 @@
                             </svg>
                         </div>
                         <h2 class="cs-iconbox_title">Privacy focused</h2>
-                        <div class="cs-iconbox_subtitle">It is a long established fact that a reader will be
-                            distracted by the readable</div>
+                        <div class="cs-iconbox_subtitle">We prioritize privacy, ensuring your transactions and
+                            interactions remain confidential.</div>
                     </div>
                     <div class="cs-height_30 cs-height_lg_30"></div>
                 </div>
@@ -568,9 +280,9 @@
                                 </defs>
                             </svg>
                         </div>
-                        <h2 class="cs-iconbox_title">Accessible NFTs</h2>
-                        <div class="cs-iconbox_subtitle">It is a long established fact that a reader will be
-                            distracted by the readable</div>
+                        <h2 class="cs-iconbox_title">Accessibility</h2>
+                        <div class="cs-iconbox_subtitle">Our platform is designed to be accessible to all, fostering
+                            inclusivity and creativity in the art community</div>
                     </div>
                     <div class="cs-height_30 cs-height_lg_30"></div>
                 </div>
@@ -580,17 +292,19 @@
     <div class="cs-height_70 cs-height_lg_40"></div>
     <section>
         <div class="container">
-            <div class="cs-cta cs-style1 cs-bg" data-src="../assets/img/general/cta_bg.jpg">
+            <div class="cs-cta cs-style1 cs-bg" data-src="">
                 <div class="cs-cta_img"><img
                         src="https://thememarch.com/demo/html/enfhess-html/enfhess-dark/assets/img/general/cta.svg"
                         alt="Image"></div>
                 <div class="cs-cta_right">
-                    <h2 class="cs-cta_title cs-white_color_8">Create, Sell well & Collect your Best NFTs with us Very
-                        Fast</h2>
-                    <div class="cs-cta_subtitle cs-white_color_8">What’s Different Lorem Ipsum is simply dummy text of
-                        the printing and typesetting industry. Lorem Ipsum has Lorsum is simply dummy text of the
-                        printing and </div>
-                    <a href="connect-wallet.html" class="cs-btn cs-style1 cs-btn_lg"><span>Connect Wallet</span></a>
+                    <h2 class="cs-cta_title">Explore, Create, and Collect Unique Art Pieces with Anazor</h2>
+                    <div class="cs-cta_subtitle ">Discover a new way to engage with art. Anazor provides a platform
+                        where everyone can dive into the world of art, creating, sharing, and collecting unique pieces
+                        in a seamless and intuitive manner.</div>
+                        @if (Auth::check() && Auth::user()->hasRole('user'))
+                         <a href="connect-wallet.html" class="cs-btn cs-style1 cs-btn_lg"><span>Get Started</span></a>
+                    @endif
+                   
                 </div>
             </div>
         </div>
@@ -600,103 +314,60 @@
         <div class="container">
             <div class="cs-section_heading cs-style2">
                 <div class="cs-section_left">
-                    <h2 class="cs-section_title">Our Blogs</h2>
+                    <h2 class="cs-section_title">Our Forum</h2>
                 </div>
                 <div class="cs-section_right">
-                    <a href="explore-details.html" class="cs-btn cs-style1"><span>Explore More</span></a>
+                    <a href="http://127.0.0.1:8000/forum" class="cs-btn cs-style1"><span>Explore More</span></a>
                 </div>
             </div>
             <div class="cs-height_45 cs-height_lg_45"></div>
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="cs-post cs-style1">
-                        <a href="blog-details.html" class="cs-post_thumb">
-                            <div class="cs-post_thumb_in cs-bg" data-src="../assets/img/general/general_16.jpg">
-                            </div>
-                        </a>
-                        <div class="cs-post_info">
-                            <h2 class="cs-post_title"><a href="blog-details.html">Guide to Making, Buying and
-                                    Selling NFT</a></h2>
-                            <div class="cs-post_subtitle">It is a long established fact that a reader will be
-                                distrac by the readable content of a page...</div>
-                            <div class="cs-height_20 cs-height_lg_20"></div>
-                            <div class="cs-post_avatar">
-                                <a href="#" class="cs-post_avatar_img"><img
-                                        src="../assets/img/avatar/avatar_18.png" alt="Avatr"></a>
-                                <div class="cs-post_avatar_right">
-                                    <h2 class="cs-post_avatar_name cs-semi_bold"><a href="#">Marina G.
-                                            Trujillo</a></h2>
-                                    <div class="cs-post_meta">
-                                        <span class="cs-post_meta_item">5 Mar 2022</span>
-                                        <span class="cs-post_meta_item">25 Comments</span>
+
+
+                @php $count = 0; @endphp
+                @foreach ($posts as $post)
+                    @if ($count < 3)
+                        <div class="col-lg-4">
+                            <div class="cs-post cs-style1" data-topic="{{ $post->topic_id }}">
+                                <a href="blog-details.html" class="cs-post_thumb">
+                                    <div class="cs-post_thumb_in cs-bg"
+                                        data-src="../assets/img/general/general_16.jpg">
+                                    </div>
+                                </a>
+                                <div class="cs-post_info">
+                                    <h2 class="cs-post_title"><a href="blog-details.html">{{ $post->title }}</a>
+                                    </h2>
+                                    <div class="cs-post_subtitle">{{ $post->content }}</div>
+                                    <div class="cs-height_20 cs-height_lg_20"></div>
+                                    <div class="cs-post_avatar">
+                                        <a href="#" class="cs-post_avatar_img"><img
+                                                src="../assets/img/avatar/avatar_18.png" alt="Avatar"></a>
+                                        <div class="cs-post_avatar_right">
+                                            <h2 class="cs-post_avatar_name cs-semi_bold"><a
+                                                    href="#">{{ $post->creator->name }}</a></h2>
+                                            <div class="cs-post_meta">
+                                                <span class="cs-post_meta_item">{{ $post->created_at }}</span>
+                                                <span class="cs-post_meta_item">{{ $post->comments->count() }}
+                                                    Comments</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="cs-height_30 cs-height_lg_30"></div>
                         </div>
-                    </div>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="cs-post cs-style1">
-                        <a href="blog-details.html" class="cs-post_thumb">
-                            <div class="cs-post_thumb_in cs-bg" data-src="../assets/img/general/general_17.jpg">
-                            </div>
-                        </a>
-                        <div class="cs-post_info">
-                            <h2 class="cs-post_title"><a href="blog-details.html">Why do NFTs even make sense?</a>
-                            </h2>
-                            <div class="cs-post_subtitle">It is a long established fact that a reader will be
-                                distrac by the readable content of a page...</div>
-                            <div class="cs-height_20 cs-height_lg_20"></div>
-                            <div class="cs-post_avatar">
-                                <a href="#" class="cs-post_avatar_img"><img
-                                        src="../assets/img/avatar/avatar_19.png" alt="Avatr"></a>
-                                <div class="cs-post_avatar_right">
-                                    <h2 class="cs-post_avatar_name cs-semi_bold"><a href="#">Author</a></h2>
-                                    <div class="cs-post_meta">
-                                        <span class="cs-post_meta_item">5 Mar 2022</span>
-                                        <span class="cs-post_meta_item">25 Comments</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="cs-post cs-style1">
-                        <a href="blog-details.html" class="cs-post_thumb">
-                            <div class="cs-post_thumb_in cs-bg" data-src="../assets/img/general/general_18.jpg">
-                            </div>
-                        </a>
-                        <div class="cs-post_info">
-                            <h2 class="cs-post_title"><a href="blog-details.html">Why do NFTs even make sense?</a>
-                            </h2>
-                            <div class="cs-post_subtitle">It is a long established fact that a reader will be
-                                distrac by the readable content of a page...</div>
-                            <div class="cs-height_20 cs-height_lg_20"></div>
-                            <div class="cs-post_avatar">
-                                <a href="#" class="cs-post_avatar_img"><img
-                                        src="../assets/img/avatar/avatar_19.png" alt="Avatr"></a>
-                                <div class="cs-post_avatar_right">
-                                    <h2 class="cs-post_avatar_name cs-semi_bold"><a href="#">Author</a></h2>
-                                    <div class="cs-post_meta">
-                                        <span class="cs-post_meta_item">5 Mar 2022</span>
-                                        <span class="cs-post_meta_item">25 Comments</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cs-height_30 cs-height_lg_30"></div>
-                </div>
+                        @php $count++; @endphp
+                    @endif
+                @endforeach
             </div>
+        </div>
+        </div>
         </div>
     </section>
     <div class="cs-height_60 cs-height_lg_40"></div>
     <section>
         <div class="container">
-            <h2 class="cs-section_heading cs-style1 text-center">The world's no.1 NFT platform for thousands of brands
+            <h2 class="cs-section_heading cs-style1 text-center">Anazor: Your Premier Platform for Leading Brands</h2>
             </h2>
             <div class="cs-height_45 cs-height_lg_45"></div>
         </div>
@@ -1034,13 +705,16 @@
     <script src="{{ asset('assets/js/plugins/isotope.pkg.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/jquery.slick.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script>// Example filtering logic using category IDs
+    <script>
+        // Example filtering logic using category IDs
         $('.cs-isotop_filter a').on('click', function(e) {
             e.preventDefault();
             var filterValue = $(this).attr('data-filter');
-            $grid.isotope({ filter: filterValue });
+            $grid.isotope({
+                filter: filterValue
+            });
         });
-        </script>
+    </script>
 </body>
 
 
