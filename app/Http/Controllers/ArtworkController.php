@@ -23,11 +23,7 @@ class ArtworkController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    // public function showall()
-    // {
-    //     $artworks = $this->artworkService->all();
-    //     return view('artworks.artist-artworks', compact('artworks'));
-    // }
+
     public function index()
     {
         // Get the authenticated user
@@ -48,19 +44,20 @@ class ArtworkController extends Controller
         // Return a view with the modal content, passing the artwork data
         return View::make('artworks.modal', ['artwork' => $artwork]);
     }
-
+    public function all()
+    {
+        $categories = $this->categoryService->getAllCategories();
+        $selectedCategory = $categories->first()->id;
+        $artworks = $this->artworkService->all();
+        return view('artworks.all_artworks', compact('artworks','categories','selectedCategory'));
+    }
     public function create()
     {
         $categories = $this->categoryService->getAllCategories();
         return view('artworks.create', compact('categories'));
     }
 
-    // public function store(ArtworkRequest $request)
-    // {
 
-    //     $artwork = $this->artworkService->create($request->validated());
-    //     return redirect()->route('artworks.show', $artwork->id)->with('success', 'Artwork created successfully.');
-    // }
     public function store(ArtworkRequest $request)
     {
         // Retrieve the authenticated user's ID
@@ -76,14 +73,14 @@ class ArtworkController extends Controller
         ]);
         if ($request->hasFile('image')) {
             $imageName = 'artwork_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $imagePath = $request->file('image')->move(public_path("storage/artwork_images"),$imageName);
+            $imagePath = $request->file('image')->move(public_path("storage/artwork_images"), $imageName);
             // $imagePath->move(public_path("storage/category_images"),$imageName);
             $validatedData['image_url'] = $imagePath->getFilename();
             //dd($imagePath->getFilename());dd()
-         
+
         }
         // Create the artwork
-        $artwork = $this->artworkService->create($validatedData); 
+        $artwork = $this->artworkService->create($validatedData);
         // Attach the artwork to the artist
         $artist = Artist::findOrFail($artistId);
         $artist->artworks()->attach($artwork->id);

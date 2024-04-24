@@ -39,4 +39,46 @@ class ForumCommentController extends Controller
 
         return redirect()->back()->with('success', 'Comment added successfully.');
     }
+    public function update(Request $request, $id)
+{
+    $comment = ForumComment::findOrFail($id);
+
+    // Check if the authenticated user is the creator of the comment
+    if ($request->user()->id !== $comment->user_id) {
+        // If not the creator, return unauthorized response or redirect
+        return response()->json(['error' => 'Unauthorized'], 403);
+        // Or you can redirect to a different route or show an error message
+    }
+
+    // Validation rules for updating a comment
+    $request->validate([
+        'content' => 'required|string',
+    ]);
+
+    // Update the comment with new data
+    $comment->content = $request->content;
+    // Update other fields as needed...
+
+    // Save the updated comment
+    $comment->save();
+
+    return redirect()->back()->with('success', 'Comment updated successfully.');
+}
+
+public function destroy($id)
+{
+    $comment = ForumComment::findOrFail($id);
+
+    // Check if the authenticated user is the creator of the comment
+    if (auth()->id() !== $comment->user_id) {
+        // If not the creator, return unauthorized response or redirect
+        return response()->json(['error' => 'Unauthorized'], 403);
+        // Or you can redirect to a different route or show an error message
+    }
+
+    $comment->delete();  
+    return redirect()->back()->with('success', 'Comment deleted successfully.');
+}
+
+
 }

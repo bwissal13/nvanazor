@@ -115,6 +115,10 @@
                         </h2>
                         <div class="cs-filter_toggle_body">
                             <form id="filterForm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="category" id="category_0" value="0" {{ !$selectedCategory ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="category_0">All Categories</label>
+                                </div>
                                 @foreach ($categories as $category)
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="category" id="category_{{ $category->id }}" value="{{ $category->id }}" {{ $selectedCategory == $category->id ? 'checked' : '' }}>
@@ -250,6 +254,16 @@
     </div>
     <div class="cs-height_100 cs-height_lg_70"></div>
     <script>
+         function checkAll() {
+        var radios = document.getElementsByName('category');
+        for (var i = 0; i < radios.length; i++) {
+            radios[i].checked = false;
+        }
+        radios[0].checked = true; // Check the "All Categories" radio button
+    }
+
+    // Check all when the page is loaded
+    window.onload = checkAll;
         var selectedCategory = null; // Initialize selectedCategory variable
     
         // Listen for change event on radio buttons

@@ -24,12 +24,16 @@
                                     <tbody>
                                         @foreach($users as $key => $user)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td> <!-- Start numbering from 1 -->
+                                            <td>{{ $key + 1 }}</td> 
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->roles->first()->name ?? '' }}</td> <!-- Fetch the first role's name -->
                                             <td>
-                                                <button class="btn btn-primary">edit</button>
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

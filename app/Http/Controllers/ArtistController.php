@@ -110,7 +110,7 @@ class ArtistController extends Controller
         $this->artistService->createArtistInfo($userId, $data);
 
         // return redirect()->route('artists.showProfile', ['id' => $user->id])->with('status', 'Artist information added successfully');
-        return redirect()->route('artists.showProfile', ['id' => $userId])->with('status', 'Artist information added successfully');
+        return redirect()->route('profile', ['id' => $userId])->with('status', 'Artist information added successfully');
     }
    
     

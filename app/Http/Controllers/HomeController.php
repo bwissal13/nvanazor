@@ -11,8 +11,12 @@ use App\Repositories\RoleRepositoryInterface;
 use App\Services\ArtistService;
 use App\Services\ArtworkService;
 use App\Services\CategoryService;
+
+use Illuminate\Support\Facades\Notification;
+
+use App\Notifications\RoleChangeRequestNotification;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -62,22 +66,22 @@ class HomeController extends Controller
         $artists = $this->artistService->all();
         $topics = ForumTopic::all();
         $posts = ForumPost::all();
-  
+
         // Check if the user is authenticated
         $user = auth()->user();
-    
+
         // Default greeting
         $greeting = 'Welcome';
-    
+
         // Initialize $roles variable
         $roles = [];
-    
+
         // If the user is authenticated, retrieve user-specific information
         if ($user) {
             $roles = $this->userRepository->getUserRoles($user);
             $isAdmin = $this->userRepository->hasRole($user, 'admin');
             $isArtist = $this->userRepository->hasRole($user, 'artist');
-    
+
             if ($isAdmin) {
                 $greeting = 'Hi Admin';
             } elseif ($isArtist) {
@@ -87,22 +91,33 @@ class HomeController extends Controller
                 $greeting = 'Hi User';
             }
         }
-    
+
         // Pass the retrieved information to the view
-        return view('home', compact('greeting', 'roles', 'categories', 'artworks', 'artists','topics','posts'));
+        return view('home', compact('greeting', 'roles', 'categories', 'artworks', 'artists', 'topics', 'posts'));
     }
-    
+
     public function requestRoleChange(Request $request)
-    {
-        $admins = User::whereHas('roles', function($query) {
+{
+    $user = auth()->user();
+
+    if ($user) {
+        $admins = User::whereHas('roles', function ($query) {
             $query->where('name', 'admin');
         })->get();
 
+        // Update the role change request status to true in the database
+        $user->role_change_requested = true;
+        $user->save();
+
+        // Send notification to admins
         Notification::send($admins, new RoleChangeRequestNotification());
 
         return redirect()->back()->with('success', 'Role change request sent successfully!');
     }
-    
+
+    return redirect()->back()->with('error', 'You must be logged in to request a role change.');
+}
+
     public function showChangeRoleForm()
     {
         $users = $this->userRepository->getAllUsers();
@@ -117,12 +132,17 @@ class HomeController extends Controller
             'user_id' => 'required|exists:users,id',
             'role' => 'required|exists:roles,id',
         ]);
-
+    
         $user = $this->userRepository->findUserById($request->input('user_id'));
         $role = $this->roleRepository->findRoleById($request->input('role'));
-
+    
         $this->userRepository->assignRole($user, $role);
-
-        return redirect()->route('show-change-role')->with('success', 'Role changed successfully');
+    
+        // Update the role_change_requested status to false in the database
+        $user->role_change_requested = false;
+        $user->save();
+    
+        return redirect()->route('dashboard.index')->with('success', 'Role changed successfully');
     }
+    
 }

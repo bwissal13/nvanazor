@@ -9,4 +9,7 @@ class Category extends Model
 {
     protected $fillable = ['name','image'];
     use HasFactory;
+    public function artworks(){
+        return $this->hasMany(Artwork::class);
+    }
 }

@@ -11,7 +11,7 @@ class ForumTopic extends Model
 
     public function posts()
     {
-        return $this->hasMany(ForumPost::class);
+        return $this->hasMany(ForumPost::class,'topic_id');
     }
     use HasFactory;
 }

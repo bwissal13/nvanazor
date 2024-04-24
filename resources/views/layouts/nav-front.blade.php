@@ -29,15 +29,9 @@
                             <div class="cs-nav_in">
                                 <div class="cs-nav">
                                     <ul class="cs-nav_list">
-                                        <li class="menu-item-has-children">
-                                            <a href="index.html">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Home Default</a></li>
-                                                <li><a href="index_2.html">Home Style 2</a></li>
-                                                <li><a href="index_3.html">Home Style 3</a></li>
-                                                <li><a href="index_4.html">Home Style 4</a></li>
-                                                <li><a href="index_5.html">Home Style 5</a></li>
-                                            </ul>
+                                        <li class="">
+                                            <a href="http://127.0.0.1:8000/">Home</a>
+
                                         </li>
                                         <li class="menu-item-has-children">
                                             <a href="explore-1.html">Explore</a>
@@ -52,13 +46,16 @@
                                         </li>
                                         <li><a href="how-it-works.html">How It Works</a></li>
                                         <li class="menu-item-has-children">
-                                            <a href="blog.html">Community</a>
-                                            <ul>
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                                                <li><a href="blog-details.html">Blog Details</a></li>
-                                            </ul>
+
+                                            <a class="menu-item-has-children"
+                                                href="http://127.0.0.1:8000/forum">Forum</a>
+                                            @if (Auth::check())
+                                                <ul>
+                                                    <li><a href="http://127.0.0.1:8000/forum/add-post">Add Post</a></li>
+                                                    <li><a href="http://127.0.0.1:8000/forum/my-posts">My Posts</a></li>
+                                                </ul>
                                         </li>
+                                        @endif
                                         <li><a href="activity.html">Activity</a></li>
                                         <li class="menu-item-has-children cs-mega-menu">
                                             <a href="#">Pages</a>
@@ -138,13 +135,22 @@
 
                                         </div>
                                         <ul>
-                                            @if (Auth::check() && Auth::user()->hasRole('artist'))
-                                                <li><a href="/artists/{{ Auth::user()->artist->id }}">My Profile</a>
-                                                </li>     
+                                            {{-- @if (Auth::check() && Auth::user()->hasRole('artist'))
+                                                <li><a href="/artists/{{ Auth::user()->artist?->id }}">My Profile</a>
+                                                </li>
                                                 <li><a href="http://127.0.0.1:8000/artworks/">My Item</a></li>
+                                            @endif --}}
+                                            @if (Auth::check() && Auth::user()->hasRole('artist'))
+                                                @if (Auth::user()->artist)
+                                                    <li><a href="/artists/{{ Auth::user()->artist?->id }}">My
+                                                            Profile</a></li>
+                                                    <li><a href="http://127.0.0.1:8000/artworks/">My Item</a></li>
+                                                @else
+                                                    <li><a href="/artists/create">Create Artist Profile</a></li>
+                                                @endif
                                             @endif
 
-                                       
+
                                             <li><a href="user-wallet.html">My Wallet</a></li>
                                             <li>
                                                 <div class="form-check form-switch">

@@ -5,7 +5,7 @@
                 <div class="header-content">
                     <div class="header-left">
                         <div class="brand-logo"><a class="mini-logo" href="index.html"><img
-                                    src="images/logoi.png" alt="" width="40"></a></div>
+                                    src="{{asset('images/logoi.png')}}" alt="" width="40"></a></div>
                         <div class="search">
                             <form action="#"><span><i class="ri-search-line"></i></span><input
                                     type="text" placeholder="Search Here"></form>
@@ -117,46 +117,51 @@
     </div>
 </div>
 <div class="sidebar">
-    <div class=""><a class="full-logo" href="index.html"><img src="images/logo1.png" alt=""
+    <div class=""><a class="full-logo" href="index.html"><img src="{{asset('images/logo1.png')}}" alt=""
                 width="80"></a></div>
     <div class="menu">
         <ul>
             <li>
-                <a href="index-2.html">
+                <a href="http://127.0.0.1:8000/dashboard">
                     <span><i class="ri-layout-grid-fill"></i></span>
                     <span class="nav-text">Dashboard</span>
                 </a>
             </li>
             <li class="">
-                <a href="bids.html">
+                <a href="http://127.0.0.1:8000/categories">
                     <span><i class="ri-briefcase-line"></i></span>
-                    <span class="nav-text">Bids</span></a>
+                    <span class="nav-text">Categories</span></a>
             </li>
             <li class="">
-                <a href="saved.html">
+                <a href="http://127.0.0.1:8000/forum/topics">
                     <span><i class="ri-heart-line"></i></span>
-                    <span class="nav-text">Saved</span></a>
+                    <span class="nav-text">Topics</span></a>
             </li>
             <li class="">
-                <a href="collection.html">
+                <a href="http://127.0.0.1:8000/dashboard/posts">
+                    <span><i class="ri-heart-line"></i></span>
+                    <span class="nav-text">Posts</span></a>
+            </li>
+            <li class="">
+                <a href="/dashboard/artist">
                     <span><i class="ri-star-line"></i></span>
-                    <span class="nav-text">Collection</span></a>
+                    <span class="nav-text">Artists</span></a>
             </li>
             <li class="">
-                <a href="wallet.html">
+                <a href="http://127.0.0.1:8000/dashboard/artworks">
                     <span><i class="ri-wallet-line"></i></span>
-                    <span class="nav-text">Wallet</span></a>
+                    <span class="nav-text">Artworks</span></a>
             </li>
             <li class="">
-                <a href="profile.html">
+                <a href="http://127.0.0.1:8000/users">
                     <span><i class="ri-account-box-line"></i></span>
-                    <span class="nav-text">Profile</span></a>
+                    <span class="nav-text">Users</span></a>
             </li>
-            <li class="">
+            {{-- <li class="">
                 <a href="settings-profile.html">
                     <span><i class="ri-settings-3-line"></i></span>
                     <span class="nav-text">Settings</span></a>
-            </li>
+            </li> --}}
             <li class=" logout"><a href="signin.html">
                     <span><i class="ri-logout-circle-line"></i></span>
                     <span class="nav-text">Signout</span>

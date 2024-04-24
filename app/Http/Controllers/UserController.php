@@ -33,6 +33,13 @@ class UserController extends Controller
     
         return redirect()->route('home', ['user' => $user_id])->with('status', 'Profile updated successfully');
     }
+    public function destroy($user_id){
+        $user = User::findOrFail($user_id);
+        $user->artist()->delete();
+        $user->roles()->detach();
+        $user->delete();
     
+        return redirect()->route('users.index')->with('status', 'User deleted successfully');
+    }
     
 }

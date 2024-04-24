@@ -16,11 +16,11 @@ class ForumPost extends Model
    
     public function comments()
     {
-        return $this->hasMany(ForumComment::class, 'post_id'); // Assuming 'post_id' is the foreign key in the forum_comments table
+        return $this->hasMany(ForumComment::class, 'post_id'); 
     }
 
     public function topic()
     {
-        return $this->belongsTo(ForumTopic::class);
+        return $this->belongsTo(ForumTopic::class,'topic_id');
     }
 }

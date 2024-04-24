@@ -21,7 +21,7 @@
                                         <th>Price</th>
                                         <th>Artist</th>
                                        
-                                        <th>Action</th>
+                                      
                                         
                                     </tr>
                                 </thead>
@@ -36,9 +36,6 @@
                                         <td>{{ $artwork->artist_name }}</td>
                                         
 
-                                        <td>
-                                            <button class="btn btn-primary">Edit</button>
-                                        </td>
                                     </tr>
                                     @empty
                                     <tr>

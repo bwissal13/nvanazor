@@ -162,7 +162,8 @@
                                 {{-- {{ $artwork->likes }} --}}2.2
                             </span>
                             <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
-                                <img src="{{ asset('storage/artwork_images/' . $artwork->image_url ) }}" alt="{{ $artwork->title }}" >
+                                <img src="{{ asset('storage/artwork_images/' . $artwork->image_url) }}"
+                                    alt="{{ $artwork->title }}">
                             </a>
                             <div class="cs-card_info">
                                 <a href="#" class="cs-avatar cs-white_bg">
@@ -301,10 +302,18 @@
                     <div class="cs-cta_subtitle ">Discover a new way to engage with art. Anazor provides a platform
                         where everyone can dive into the world of art, creating, sharing, and collecting unique pieces
                         in a seamless and intuitive manner.</div>
-                        @if (Auth::check() && Auth::user()->hasRole('user'))
+                    {{-- @if (Auth::check() && Auth::user()->hasRole('user'))
                          <a href="connect-wallet.html" class="cs-btn cs-style1 cs-btn_lg"><span>Get Started</span></a>
+                    @endif --}}
+                    @if (Auth::check() && Auth::user()->hasRole('user'))
+                        <form action="{{ route('request.role.change') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="cs-btn cs-style1 cs-btn_lg"><span>Request Role
+                                    Change</span></button>
+                        </form>
                     @endif
-                   
+
+
                 </div>
             </div>
         </div>
@@ -325,22 +334,23 @@
 
 
                 @php $count = 0; @endphp
+
                 @foreach ($posts as $post)
                     @if ($count < 3)
                         <div class="col-lg-4">
                             <div class="cs-post cs-style1" data-topic="{{ $post->topic_id }}">
-                                <a href="blog-details.html" class="cs-post_thumb">
+                                <a href="http://127.0.0.1:8000/forum/post/{{$post->id}}/comment" class="cs-post_thumb">
                                     <div class="cs-post_thumb_in cs-bg"
                                         data-src="../assets/img/general/general_16.jpg">
                                     </div>
                                 </a>
                                 <div class="cs-post_info">
-                                    <h2 class="cs-post_title"><a href="blog-details.html">{{ $post->title }}</a>
+                                    <h2 class="cs-post_title"><a href="http://127.0.0.1:8000/forum/post/{{$post->id}}/comment">{{ $post->title }}</a>
                                     </h2>
                                     <div class="cs-post_subtitle">{{ $post->content }}</div>
                                     <div class="cs-height_20 cs-height_lg_20"></div>
                                     <div class="cs-post_avatar">
-                                        <a href="#" class="cs-post_avatar_img"><img
+                                        <a href="" class="cs-post_avatar_img"><img
                                                 src="../assets/img/avatar/avatar_18.png" alt="Avatar"></a>
                                         <div class="cs-post_avatar_right">
                                             <h2 class="cs-post_avatar_name cs-semi_bold"><a
@@ -706,7 +716,6 @@
     <script src="{{ asset('assets/js/plugins/jquery.slick.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script>
-        // Example filtering logic using category IDs
         $('.cs-isotop_filter a').on('click', function(e) {
             e.preventDefault();
             var filterValue = $(this).attr('data-filter');
