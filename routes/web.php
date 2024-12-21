@@ -1,9 +1,13 @@
 <?php
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ArtworkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,9 +22,40 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::resource('categories',CategoryController::class);
+
+Route::get('/dashboard/artist', [ArtistController::class, 'showArtistPage'])->name('dashboard.artist');
+Route::get('/dashboard/artworks', [ArtworkController::class, 'showArtworks'])->name('dashboard.artworks');
+
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/artist-artworks', function () {
+//     return view('artworks.artist-artworks');
+// });
+Route::get('/front', function () {
+    return view('front.index');
+});
+// Route::get('/user', function () {
+//     return view('dashboard.user');
+// });
+
+Route::resource('/users', UserController::class);
+
+Route::get('/dashboard', function () {
+    return view('dashboard.dashboard');
+});
+
+Route::get('/create-items', function () {
+    return view('artworks.create-items');
+});
+Route::get('/profile', function () {
+    return view('dashboard.profile');
+});
+Route::get('/layout', function () {
+    return view('dashboard.layout');
+});
+
 // Route::get('/signup', function () {
 //     return view('signup');
 // });
@@ -34,12 +69,10 @@ Route::get('/', function () {
 // });
 
 
-
-
 // Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/password/reset-link', [AuthController::class, 'sendPasswordResetLink'])->name('password.reset-link');
 Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
 Route::get('/email/verify', [AuthController::class, 'verifyEmail'])->name('verification.notice');
@@ -66,5 +99,28 @@ Route::middleware('role:user')->group(function () {
     // Routes accessible only by users with the 'user' role
 });
 
+
+
 Route::get('/change-role', [HomeController::class, 'showChangeRoleForm'])->name('show-change-role');
 Route::post('/change-role', [HomeController::class, 'changeRole'])->name('change-role');
+
+// Route::middleware(['role:artist'])->group(function () {
+//     // Show artist profile
+    // Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
+
+    // // // Update artist profile
+    // Route::put('/artists/{id}', [ArtistController::class, 'updateProfile'])->name('artists.updateProfile');
+
+    // // // Delete artist profile
+    // Route::delete('/artists/{id}', [ArtistController::class, 'deleteProfile'])->name('artists.deleteProfile');
+
+    // // // Create artist profile
+    // Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+    Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
+// });
+route::resource('artists',ArtistController::class);
+route::resource('artworks',ArtworkController::class);
+
+Route::get('/artworks/{id}/modal', [ArtworkController::class, 'showModal'])->name('artworks.modal');
+//  Route::get('/artists/{id}', [ArtistController::class, 'showProfile'])->name('artists.showProfile');
+// Route::get('/artist/profile',[''])

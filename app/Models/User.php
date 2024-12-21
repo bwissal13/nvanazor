@@ -60,4 +60,10 @@ class User extends Authenticatable
     {
         return $this->permissions->contains('name', $permission);
     }
+    public function artist()
+    {
+        return $this->hasOne(Artist::class,'user_id');
+    }
+ 
+
 }

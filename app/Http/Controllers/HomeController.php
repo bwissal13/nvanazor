@@ -19,16 +19,36 @@ class HomeController extends Controller
         $this->roleRepository = $roleRepository;
     }
 
+    // public function index()
+    // {
+    //     $user = auth()->user();
+    //     $roles = $this->userRepository->getUserRoles($user);
+    //     $isAdmin = $this->userRepository->hasRole($user, 'admin');
+    //     $greeting = $isAdmin ? 'Hi Admin' : 'Hi User';
+
+    //     return view('home', ['greeting' => $greeting, 'roles' => $roles]);
+    // }
     public function index()
     {
         $user = auth()->user();
         $roles = $this->userRepository->getUserRoles($user);
         $isAdmin = $this->userRepository->hasRole($user, 'admin');
-        $greeting = $isAdmin ? 'Hi Admin' : 'Hi User';
-
+        
+        // Check if the user has the 'artist' role
+        $isArtist = $this->userRepository->hasRole($user, 'artist');
+    
+        if ($isAdmin) {
+            $greeting = 'Hi Admin';
+        } elseif ($isArtist) {
+            // Redirect to the artist creation form
+            return redirect()->route('artists.create');
+        } else {
+            $greeting = 'Hi User';
+        }
+    
         return view('home', ['greeting' => $greeting, 'roles' => $roles]);
     }
-
+    
     public function showChangeRoleForm()
     {
         $users = $this->userRepository->getAllUsers();

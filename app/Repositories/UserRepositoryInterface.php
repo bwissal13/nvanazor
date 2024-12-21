@@ -7,6 +7,9 @@ use App\Models\User;
 
 interface UserRepositoryInterface
 {
+    // public function getAll();
+
+    // public function findById($id);
     public function getAllUsers();
 
     public function findByEmail($email);
